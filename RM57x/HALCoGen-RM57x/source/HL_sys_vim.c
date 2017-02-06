@@ -1,11 +1,44 @@
 /** @file HL_sys_vim.c
-*   @brief VIM Driver Inmplmentation File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @brief VIM Driver Implementation File
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 
 #include "HL_sys_vim.h"
@@ -179,13 +212,13 @@ void vimInit(void)
 
     /* Enable ECC for VIM RAM */
     /* Errata VIM#28 Workaround: Disable Single Bit error correction */
-    vimREG->ECCCTL = (0xAU << 0U) | (0x5U << 16U);
+    vimREG->ECCCTL = (uint32)((uint32)0xAU << 0U) | (uint32)((uint32)0x5U << 16U);
 
     /* Initialize VIM table */
     {
         uint32 i;
 
-        for (i = 0U; i < (VIM_CHANNELS + 1U); i++)
+        for (i = 0U; i < VIM_CHANNELS; i++)
         {
             vimRAM->ISR[i] = s_vim_init[i];
         }
@@ -525,7 +558,7 @@ void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype)
         }
         else
         {
-            vimREG->FIRQPR3 |= (uint32)1U << (channel-96U);
+            vimREG->FIRQPR3 |= ((uint32)1U << (channel-96U));
         }
         vimREG->REQMASKSET3 = (uint32)1U << (channel-96U);
     }
@@ -537,7 +570,7 @@ void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype)
         }
         else
         {
-            vimREG->FIRQPR2 |= (uint32)1U << (channel-64U);
+            vimREG->FIRQPR2 |= ((uint32)1U << (channel-64U));
         }
         vimREG->REQMASKSET2 = (uint32)1U << (channel-64U);
     }
@@ -549,7 +582,7 @@ void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype)
         }
         else
         {
-            vimREG->FIRQPR1 |= (uint32)1U << (channel-32U);
+            vimREG->FIRQPR1 |= ((uint32)1U << (channel-32U));
         }
         vimREG->REQMASKSET1 = (uint32)1U << (channel-32U);
     }
@@ -561,7 +594,7 @@ void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype)
         }
         else
         {
-            vimREG->FIRQPR0 |= (uint32)1U << channel;
+            vimREG->FIRQPR0 |= ((uint32)1U << channel);
         }
         vimREG->REQMASKSET0 = (uint32)1U << channel;
     }

@@ -1,7 +1,7 @@
 /** @file HL_esm.c
 *   @brief Esm Driver Source File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file contains:
 *   - API Functions
@@ -9,7 +9,40 @@
 *   which are relevant for the Esm driver.
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
@@ -55,12 +88,8 @@ void esmInit(void)
     esmREG->SR1[2U] = 0xFFFFFFFFU;
 
     esmREG->SR4[0U] = 0xFFFFFFFFU;
-    esmREG->SR4[1U] = 0xFFFFFFFFU;
-    esmREG->SR4[2U] = 0xFFFFFFFFU;
 
     esmREG->SR7[0U] = 0xFFFFFFFFU;
-    esmREG->SR7[1U] = 0xFFFFFFFFU;
-    esmREG->SR7[2U] = 0xFFFFFFFFU;
 
     /** - Setup LPC preload */
     esmREG->LTCPR = 16384U - 1U;
@@ -599,9 +628,9 @@ void esmSetInterruptLevel(uint64 channels, uint64 flags)
 /* USER CODE BEGIN (27) */
 /* USER CODE END */
 
-    esmREG->ILCR4 = (uint32)(((channels & (~flags)) >> 32U) & 0xFFFFFFFU);
+    esmREG->ILCR4 = (uint32)(((channels & (~flags)) >> 32U) & 0xFFFFFFFFU);
     esmREG->ILSR4 = (uint32)(((channels & flags) >> 32U) & 0xFFFFFFFFU);
-    esmREG->ILCR1 = (uint32)((channels & (~flags)) & 0xFFFFFFFU);
+    esmREG->ILCR1 = (uint32)((channels & (~flags)) & 0xFFFFFFFFU);
     esmREG->ILSR1 = (uint32)((channels & flags) & 0xFFFFFFFFU);
 
 /* USER CODE BEGIN (28) */
@@ -622,7 +651,7 @@ void esmSetInterruptLevelUpper(uint64 channels, uint64 flags)
 /* USER CODE BEGIN (29) */
 /* USER CODE END */
 
-    esmREG->ILCR7 = (uint32)((channels & (~flags)) & 0xFFFFFFFU);
+    esmREG->ILCR7 = (uint32)((channels & (~flags)) & 0xFFFFFFFFU);
     esmREG->ILSR7 = (uint32)((channels & flags) & 0xFFFFFFFFU);
 
 /* USER CODE BEGIN (30) */
@@ -643,8 +672,11 @@ void esmClearStatus(uint32 group, uint64 channels)
 /* USER CODE BEGIN (31) */
 /* USER CODE END */
 
-    esmREG->SR4[group] = (uint32)((channels >> 32U) & 0xFFFFFFFFU);
     esmREG->SR1[group] = (uint32)(channels & 0xFFFFFFFFU);
+	if(group == 0U)
+	{
+	    esmREG->SR4[group] = (uint32)((channels >> 32U) & 0xFFFFFFFFU);
+	}
 
 /* USER CODE BEGIN (32) */
 /* USER CODE END */
@@ -680,7 +712,7 @@ void esmClearStatusBuffer(uint32 channels)
 /* USER CODE BEGIN (35) */
 /* USER CODE END */
 
-    esmREG->SSR2 = (uint32)(channels);
+    esmREG->SSR2 = channels;
 
 /* USER CODE BEGIN (36) */
 /* USER CODE END */
@@ -719,8 +751,16 @@ void esmSetCounterPreloadValue(uint32 value)
 uint64 esmGetStatus(uint32 group, uint64 channels)
 {
     uint64 status;
-    uint32 ESM_ESTATUS4 = esmREG->SR4[group];
-    uint32 ESM_ESTATUS1 = esmREG->SR1[group];
+	uint32 ESM_ESTATUS4, ESM_ESTATUS1;
+	if(group == 0U)
+	{
+		ESM_ESTATUS4 = esmREG->SR4[group];
+	}
+	else
+	{
+		ESM_ESTATUS4 = 0U;
+	}
+	ESM_ESTATUS1 = esmREG->SR1[group];
 
 
 /* USER CODE BEGIN (39) */
@@ -770,14 +810,13 @@ uint64 esmGetStatusUpper(uint32 group, uint64 channels)
 *
 *   Returns the group 2 buffered status of selected channels.
 */
-uint32 esmGetStatusBuffer(uint64 channels)
+uint32 esmGetStatusBuffer(uint32 channels)
 {
     uint32 status;
-    uint32 ESM_SSR2 = esmREG->SSR2;
 
 /* USER CODE BEGIN (43) */
 /* USER CODE END */
-    status = ((uint64)ESM_SSR2) & channels;
+    status = esmREG->SSR2 & channels;
 
 /* USER CODE BEGIN (44) */
 /* USER CODE END */
@@ -951,7 +990,6 @@ void esmHighInterrupt(void)
     else
     {
         esmREG->SR7[0U] = 0xFFFFFFFFU;
-        esmREG->SR4[1U] = 0xFFFFFFFFU;
         esmREG->SR4[0U] = 0xFFFFFFFFU;
         esmREG->SR1[1U] = 0xFFFFFFFFU;
         esmREG->SR1[0U] = 0xFFFFFFFFU;

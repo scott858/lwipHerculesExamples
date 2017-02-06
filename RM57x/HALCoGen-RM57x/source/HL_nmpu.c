@@ -1,7 +1,7 @@
 /** @file HL_nmpu.c
 *   @brief NMPU Driver Source File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file contains:
 *   - API Functions
@@ -10,7 +10,40 @@
 *   which are relevant for the NMPU driver.
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 
 #include "HL_nmpu.h"
@@ -124,7 +157,7 @@ void nmpuDisableErrorGen(nmpuBASE_t * nmpu)
 *
 *   This function enables an NMPU region. This function will not enable the NMPU module. Application must call the routine nmpuEnable to so the same.
 */
-boolean nmpuEnableRegion(nmpuBASE_t * nmpu, uint32 region, nmpuRegionAttributes_t config)
+boolean nmpuEnableRegion(nmpuBASE_t * nmpu, nmpuReg_t region, nmpuRegionAttributes_t config)
 {
     boolean status = TRUE;
     uint32 addrMask;
@@ -132,7 +165,7 @@ boolean nmpuEnableRegion(nmpuBASE_t * nmpu, uint32 region, nmpuRegionAttributes_
 /* USER CODE BEGIN (8) */
 /* USER CODE END */
 
-    if(region >= nmpu->MPUTYPE)
+    if((uint32)region >= (nmpu->MPUTYPE >> 8U))
     {
         /* Invalid region */
         status = FALSE;
@@ -140,7 +173,7 @@ boolean nmpuEnableRegion(nmpuBASE_t * nmpu, uint32 region, nmpuRegionAttributes_
 
     addrMask = (uint32)2U << (config.regionsize);
     addrMask = addrMask - 1U;
-    if(config.baseaddr & addrMask != 0U)
+    if((config.baseaddr & addrMask) != 0U)
     {
         /* Invalid Baseaddress - Not a multiple of region size */
         status = FALSE;
@@ -175,14 +208,14 @@ boolean nmpuEnableRegion(nmpuBASE_t * nmpu, uint32 region, nmpuRegionAttributes_
 *
 *   This function disables an NMPU region.
 */
-boolean nmpuDisableRegion(nmpuBASE_t * nmpu, uint32 region)
+boolean nmpuDisableRegion(nmpuBASE_t * nmpu, nmpuReg_t region)
 {
     boolean status;
 
 /* USER CODE BEGIN (10) */
 /* USER CODE END */
 
-    if(region >= nmpu->MPUTYPE)
+    if((uint32)region >= (nmpu->MPUTYPE >> 8U))
     {
         /* Invalid region */
         status = FALSE;

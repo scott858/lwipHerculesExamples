@@ -1,7 +1,7 @@
 /** @file HL_notification.c 
 *   @brief User Notification Definition File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file  defines  empty  notification  routines to avoid
 *   linker errors, Driver expects user to define the notification. 
@@ -11,9 +11,45 @@
 *
 */
 
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+
 /* Include Files */
 
 #include "HL_esm.h"
+#include "HL_gio.h"
 #include "HL_sci.h"
 #include "HL_epc.h"
 #include "HL_emac.h" 
@@ -73,6 +109,16 @@ void dmaGroupANotification(dmaInterrupt_t inttype, uint32 channel)
 
 /* USER CODE BEGIN (11) */
 /* USER CODE END */
+#pragma WEAK(gioNotification)
+void gioNotification(gioPORT_t *port, uint32 bit)
+{
+/*  enter user code between the USER CODE BEGIN and USER CODE END. */
+/* USER CODE BEGIN (22) */
+/* USER CODE END */
+}
+
+/* USER CODE BEGIN (23) */
+/* USER CODE END */
 
 #pragma WEAK(sciNotification)
 void sciNotification(sciBASE_t *sci, uint32 flags)     
@@ -102,15 +148,15 @@ void sciNotification(sciBASE_t *sci, uint32 flags)
 /* USER CODE BEGIN (56) */
 /* USER CODE END */
 
-#pragma WEAK(epcCAMOverflowNotification)
-void epcCAMOverflowNotification(void)
+#pragma WEAK(epcCAMFullNotification)
+void epcCAMFullNotification(void)
 {
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
 /* USER CODE BEGIN (57) */
 /* USER CODE END */
 }
-#pragma WEAK(epcFIFOOverflowNotification)
-void epcFIFOOverflowNotification(uint32 epcFIFOStatus)
+#pragma WEAK(epcFIFOFullNotification)
+void epcFIFOFullNotification(uint32 epcFIFOStatus)
 {
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
 /* USER CODE BEGIN (58) */
