@@ -1,7 +1,7 @@
 /** @file HL_esm.h
 *   @brief Error Signaling Module Driver Header File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file contains:
 *   - Definitions
@@ -10,7 +10,40 @@
 *   which are relevant for the Esm driver.
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 #ifndef __ESM_H__
 #define __ESM_H__
@@ -1168,7 +1201,6 @@ uint32   esmError(void);
 void     esmEnableError(uint64 channels);
 void     esmEnableErrorUpper(uint64 channels);
 void     esmDisableError(uint64 channels);
-void     esmDisableError(uint64 channels);
 void     esmDisableErrorUpper(uint64 channels);
 void     esmTriggerErrorPinReset(void);
 void     esmActivateNormalOperation(void);
@@ -1184,7 +1216,7 @@ void     esmClearStatusBuffer(uint32 channels);
 void     esmSetCounterPreloadValue(uint32 value);
 uint64   esmGetStatus(uint32 group, uint64 channels);
 uint64   esmGetStatusUpper(uint32 group, uint64 channels);
-uint32   esmGetStatusBuffer(uint64 channels);
+uint32   esmGetStatusBuffer(uint32 channels);
 
 esmSelfTestFlag_t esmEnterSelfTest(void);
 esmSelfTestFlag_t esmSelfTestStatus(void);
@@ -1195,8 +1227,9 @@ void esmGetConfigValue(esm_config_reg_t *config_reg, config_value_type_t type);
 *   @brief Interrupt callback
 *   @param[in] channel - Group 1 channel
 *
-* This is a callback that is provided by the application and is called upon
-* an interrupt. The parameter passed to the callback is group 1 channel caused the interrupt.
+*   This is a callback that is provided by the application and is called upon
+*   an interrupt. The parameter passed to the callback is group 1 channel caused the interrupt.
+*   @note Callback parameter channel is not a masked value. Do not use the macros esmCHANNELx for comparison.
 */
 void esmGroup1Notification(esmBASE_t *esm, uint32 channel);
 
@@ -1204,17 +1237,19 @@ void esmGroup1Notification(esmBASE_t *esm, uint32 channel);
 *   @brief Interrupt callback
 *   @param[in] channel - Group 2 channel
 *
-* This is a callback that is provided by the application and is called upon
-* an interrupt. The parameter passed to the callback is group 2 channel caused the interrupt.
+*   This is a callback that is provided by the application and is called upon
+*   an interrupt. The parameter passed to the callback is group 2 channel caused the interrupt.
+*   @note Callback parameter channel is not a masked value. Do not use the macros esmCHANNELx for comparison.
 */
 void esmGroup2Notification(esmBASE_t *esm, uint32 channel);
 
 /** @fn void esmGroup3Notification(esmBASE_t *esmREG, uint32 channel)
 *   @brief Notification function for Group 3 Error
-*   @param[in] channel - Group 3 channel
+*   @param[in] channel - Group 3 channel errors
 *
-* This is a callback that is provided by the application
-* The parameter passed to the callback is group 3 channel error.
+*   This is a callback that is provided by the application
+*   The parameter passed to the callback contains the group 3 channel errors (masked values).
+*   @note Use the macros esmCHANNELx for comparison.
 */
 void esmGroup3Notification(esmBASE_t *esm, uint32 channel);
 

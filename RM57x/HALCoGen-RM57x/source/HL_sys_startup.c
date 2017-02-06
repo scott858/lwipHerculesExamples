@@ -1,7 +1,7 @@
 /** @file HL_sys_startup.c 
 *   @brief Startup Source File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file contains:
 *   - Include Files
@@ -13,7 +13,40 @@
 *   which are relevant for the Startup.
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
@@ -38,19 +71,18 @@
 
 /*SAFETYMCUSW 218 S MR:20.2 <APPROVED> "Functions from library" */
 extern void __TI_auto_init(void);
-/*SAFETYMCUSW 354 S MR:1.4 <APPROVED> " Startup code(main should bedeclared by the user)" */
-extern void main(void);
+/*SAFETYMCUSW 354 S MR:NA <APPROVED> " Startup code(main should be declared by the user)" */
+extern int main(void);
 /*SAFETYMCUSW 122 S MR:20.11 <APPROVED> "Startup code(exit and abort need to be present)" */
-/*SAFETYMCUSW 354 S MR:1.4 <APPROVED> " Startup code(Extern declaration present in the library)" */
-extern void exit(void);
-extern void muxInit(void);
+/*SAFETYMCUSW 354 S MR:NA <APPROVED> " Startup code(Extern declaration present in the library)" */
+extern void exit(int _status);
+
 
 /* USER CODE BEGIN (3) */
 /* USER CODE END */
 
 /* Startup Routine */
 void _c_int00(void);
-
 /* USER CODE BEGIN (4) */
 /* USER CODE END */
 
@@ -63,6 +95,12 @@ void _c_int00(void)
 
 /* USER CODE BEGIN (5) */
 /* USER CODE END */
+
+    /* Initialize Core Registers to avoid CCM Error */
+    _coreInitRegisters_();
+	
+    /* Initialize Stack Pointers */
+    _coreInitStackPointer_();
 
     /* Reset handler: the following instructions read from the system exception status register
      * to identify the cause of the CPU reset.
@@ -82,14 +120,9 @@ void _c_int00(void)
 /* USER CODE BEGIN (7) */
 /* USER CODE END */
 
-        /* Initialize Core Registers to avoid CCM Error */
-        _coreInitRegisters_();
-
 /* USER CODE BEGIN (8) */
 /* USER CODE END */
 
-        /* Initialize Stack Pointers */
-        _coreInitStackPointer_();
 
 /* USER CODE BEGIN (9) */
 /* USER CODE END */
@@ -141,24 +174,18 @@ void _c_int00(void)
         break;
 		
         case WATCHDOG_RESET:
+        case WATCHDOG2_RESET:
 /* USER CODE BEGIN (15) */
 /* USER CODE END */
         break;
     
         case CPU0_RESET:
-		case CPU1_RESET:
 /* USER CODE BEGIN (16) */
 /* USER CODE END */
 
-        /* Initialize Core Registers to avoid CCM Error */
-        _coreInitRegisters_();
-
 /* USER CODE BEGIN (17) */
 /* USER CODE END */
-
-        /* Initialize Stack Pointers */
-        _coreInitStackPointer_();
-
+		
 /* USER CODE BEGIN (18) */
 /* USER CODE END */
 
@@ -202,7 +229,6 @@ void _c_int00(void)
 
         /* initialize global variable and constructors */
     __TI_auto_init();
-
 /* USER CODE BEGIN (26) */
 /* USER CODE END */
     
@@ -211,19 +237,21 @@ void _c_int00(void)
 /*SAFETYMCUSW 326 S MR:8.2 <APPROVED> "Startup code(Declaration for main in library)" */
 /*SAFETYMCUSW 60 D MR:8.8 <APPROVED> "Startup code(Declaration for main in library;Only doing an extern for the same)" */
     main();
-
-
 /* USER CODE BEGIN (27) */
 /* USER CODE END */
-
 /*SAFETYMCUSW 122 S MR:20.11 <APPROVED> "Startup code(exit and abort need to be present)" */
-    exit();
-}
+    exit(0);
+
 
 /* USER CODE BEGIN (28) */
 /* USER CODE END */
 
-
+}
 
 /* USER CODE BEGIN (29) */
+/* USER CODE END */
+
+
+
+/* USER CODE BEGIN (30) */
 /* USER CODE END */

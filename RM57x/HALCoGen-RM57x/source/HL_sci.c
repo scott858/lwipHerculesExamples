@@ -1,25 +1,58 @@
 /** @file HL_sci.c 
 *   @brief SCI Driver Implementation File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
 
 #include "HL_sci.h"
 #include "HL_sys_vim.h"
-
+#include "math.h"
 /* USER CODE BEGIN (1) */
 /* USER CODE END */
 /** @struct g_sciTransfer
 *   @brief Interrupt mode globals
 *
 */
-static struct g_sciTransfer
+static volatile struct g_sciTransfer
 {
     uint32   mode;         /* Used to check for TX interrupt Enable */  
     uint32   tx_length;    /* Transmit data length in number of Bytes */
@@ -162,8 +195,9 @@ void sciSetBaudrate(sciBASE_t *sci, uint32 baud)
 /* USER CODE END */
 
     /*SAFETYMCUSW 96 S MR:6.1 <APPROVED> "Calculations including int and float cannot be avoided" */
-	temp = (f*(baud + 1U));
-	temp2 = ((vclk)/((float64)temp));
+	temp = (f*(baud));
+	temp2 = ((vclk)/((float64)temp))-1U;
+	temp2 = floor(temp2 + 0.5);        /* Rounding-off to the closest integer */
 	sci->BRS = (uint32)((uint32)temp2 & 0x00FFFFFFU);
 
 /* USER CODE BEGIN (7) */
@@ -185,7 +219,7 @@ uint32 sciIsTxReady(sciBASE_t *sci)
 /* USER CODE BEGIN (8) */
 /* USER CODE END */
 
-    return sci->FLR & SCI_TX_INT;
+    return sci->FLR & (uint32)SCI_TX_INT;
 }
 
 
@@ -204,8 +238,8 @@ void sciSendByte(sciBASE_t *sci, uint8 byte)
 /* USER CODE BEGIN (9) */
 /* USER CODE END */
 
-    /*SAFETYMCUSW 28 D MR:NA <APPROVED> "Potentially infinite loop found - Hardware Status check for execution sequence" */
-    while ((sci->FLR & SCI_TX_INT) == 0U) 
+	/*SAFETYMCUSW 28 D MR:NA <APPROVED> "Potentially infinite loop found - Hardware Status check for execution sequence" */
+    while ((sci->FLR & (uint32)SCI_TX_INT) == 0U) 
     { 
     } /* Wait */
     sci->TD = byte;
@@ -238,7 +272,8 @@ void sciSend(sciBASE_t *sci, uint32 length, uint8 * data)
     uint32 index = (sci  == sciREG1) ? 0U : 
                          ((sci == sciREG2) ? 1U : 
                          ((sci == sciREG3) ? 2U : 3U));
-
+    uint8 txdata;
+	
 /* USER CODE BEGIN (11) */
 /* USER CODE END */
 /*SAFETYMCUSW 139 S MR:13.7 <APPROVED> "Mode variable is configured in sciEnableNotification()" */
@@ -252,10 +287,11 @@ void sciSend(sciBASE_t *sci, uint32 length, uint8 * data)
 
         /* start transmit by sending first byte */        
         /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are only allowed in this driver" */
-		uint8 txdata = *g_sciTransfer_t[index].tx_data;
+		txdata = *g_sciTransfer_t[index].tx_data;
 		sci->TD     = (uint32)(txdata);
 		/*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are only allowed in this driver" */
-        *g_sciTransfer_t[index].tx_data++;
+        /*SAFETYMCUSW 567 S MR:17.1,17.4 <APPROVED> "Pointer increment needed" */
+		g_sciTransfer_t[index].tx_data++;
         sci->SETINT = (uint32)SCI_TX_INT;
     }
     else
@@ -269,9 +305,10 @@ void sciSend(sciBASE_t *sci, uint32 length, uint8 * data)
             { 
             } /* Wait */
 			/*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are only allowed in this driver" */
-			uint8 txdata = *data;
+			txdata = *data;
             sci->TD = (uint32)(txdata);
 			/*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are only allowed in this driver" */
+            /*SAFETYMCUSW 567 S MR:17.1,17.4 <APPROVED> "Pointer increment needed" */
 			data++;
 			length--;
         }
@@ -399,7 +436,6 @@ void sciReceive(sciBASE_t *sci, uint32 length, uint8 * data)
     }
     else
     {   
-	    /*SAFETYMCUSW 30 S MR:12.2,12.3 <APPROVED> "Used for data count in Transmit/Receive polling and Interrupt mode" */
         while (length > 0U)
         {
 	        /*SAFETYMCUSW 28 D MR:NA <APPROVED> "Potentially infinite loop found - Hardware Status check for execution sequence" */
@@ -515,6 +551,27 @@ void sciDisableNotification(sciBASE_t *sci, uint32 flags)
 /* USER CODE BEGIN (26) */
 /* USER CODE END */
 }
+
+/** @fn sciEnterResetState(sciBASE_t *sci)
+*   @brief Enter reset state
+*   @param[in] sci   - sci module base address
+*   @note The SCI should only be configured while in reset state
+*/
+void sciEnterResetState(sciBASE_t *sci)
+{
+	sci->GCR1 &= 0xFFFFFF7FU;
+}
+
+/** @fn scixitResetState(sciBASE_t *sci)
+*   @brief Exit reset state
+*   @param[in] sci   - sci module base address
+*   @note The SCI should only be configured while in reset state
+*/
+void sciExitResetState(sciBASE_t *sci)
+{
+	sci->GCR1 |= 0x00000080U;
+}
+
 
 /** @fn void sci1GetConfigValue(sci_config_reg_t *config_reg, config_value_type_t type)
 *   @brief Get the initial or current values of the SCI1 configuration registers

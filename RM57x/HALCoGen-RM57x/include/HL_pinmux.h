@@ -1,11 +1,44 @@
 /** @file HL_pinmux.h 
 *   @brief PINMUX Driver Implementation File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 #ifndef __PINMUX_H__
 #define __PINMUX_H__
@@ -482,28 +515,28 @@ extern "C" {
 #define PINMUX_BALL_K3_ECLK2                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_K3_SHIFT))
 
 #define PINMUX_BALL_R4_EMIF_nCAS                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_R4_SHIFT))
-#define PINMUX_BALL_R4_GIOB_3                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_R4_SHIFT))
+#define PINMUX_BALL_R4_GIOB_3                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_R4_SHIFT))
 
 #define PINMUX_BALL_N17_EMIF_nCS_0                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_N17_SHIFT))
 #define PINMUX_BALL_N17_RTP_DATA_15                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_N17_SHIFT))
 #define PINMUX_BALL_N17_N2HET2_07                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_N17_SHIFT))
 
 #define PINMUX_BALL_L17_EMIF_nCS_2                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_L17_SHIFT))
-#define PINMUX_BALL_L17_GIOB_4                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_L17_SHIFT))
+#define PINMUX_BALL_L17_GIOB_4                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_L17_SHIFT))
 
 #define PINMUX_BALL_K17_EMIF_nCS_3                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_K17_SHIFT))
 #define PINMUX_BALL_K17_RTP_DATA_14                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_K17_SHIFT))
 #define PINMUX_BALL_K17_N2HET2_09                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_K17_SHIFT))
 
-#define PINMUX_BALL_M17_EMIF_nCSl_4                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_M17_SHIFT))
+#define PINMUX_BALL_M17_EMIF_nCS_4                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_M17_SHIFT))
 #define PINMUX_BALL_M17_RTP_DATA_07                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_M17_SHIFT))
 #define PINMUX_BALL_M17_GIOB_5                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_M17_SHIFT))
 
 #define PINMUX_BALL_R3_EMIF_nRAS                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_R3_SHIFT))
-#define PINMUX_BALL_R3_GIOB_6                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_R3_SHIFT))
+#define PINMUX_BALL_R3_GIOB_6                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_R3_SHIFT))
 
 #define PINMUX_BALL_P3_EMIF_nWAIT                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_P3_SHIFT))
-#define PINMUX_BALL_P3_GIOB_7                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_P3_SHIFT))
+#define PINMUX_BALL_P3_GIOB_7                                  ((uint32)((uint32)0x4U <<  PINMUX_BALL_P3_SHIFT))
 
 #define PINMUX_BALL_D17_EMIF_nWE                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_D17_SHIFT))
 #define PINMUX_BALL_D17_EMIF_RNW                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_D17_SHIFT))
@@ -685,7 +718,7 @@ extern "C" {
 
 #define PINMUX_BALL_B2_MIBSPI3NCS_2                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_B2_SHIFT))
 #define PINMUX_BALL_B2_I2C1_SDA                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_B2_SHIFT))
-#define PINMUX_BALL_B2_N2HET1_27                                  ((uint32)((uint32)0x10U <<  PINMUX_BALL_B2_SHIFT))
+#define PINMUX_BALL_B2_N2HET1_27                                  ((uint32)((uint32)0x8U <<  PINMUX_BALL_B2_SHIFT))
 #define PINMUX_BALL_B2_nTZ1_2                                  ((uint32)((uint32)0x20U <<  PINMUX_BALL_B2_SHIFT))
 
 #define PINMUX_BALL_C3_MIBSPI3NCS_3                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_C3_SHIFT))
@@ -767,7 +800,7 @@ extern "C" {
 
 #define PINMUX_BALL_K18_N2HET1_00                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_K18_SHIFT))
 #define PINMUX_BALL_K18_MIBSPI4CLK                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_K18_SHIFT))
-#define PINMUX_BALL_K18_28_5                                  ((uint32)((uint32)0x20U <<  PINMUX_BALL_K18_SHIFT))
+#define PINMUX_BALL_K18_eTPWM2B                                  ((uint32)((uint32)0x20U <<  PINMUX_BALL_K18_SHIFT))
 
 #define PINMUX_BALL_V2_N2HET1_01                                  ((uint32)((uint32)0x1U <<  PINMUX_BALL_V2_SHIFT))
 #define PINMUX_BALL_V2_MIBSPI4NENA                                  ((uint32)((uint32)0x2U <<  PINMUX_BALL_V2_SHIFT))
@@ -1114,188 +1147,188 @@ extern "C" {
 #define SIGNAL_nTZ1_2_SHIFT		8U
 #define SIGNAL_nTZ1_3_SHIFT		16U
 
-#define SIGNAL_AD2EVT_T10		(0x1U << SIGNAL_AD2EVT_SHIFT)
-#define SIGNAL_AD2EVT_V10		(0x2U << SIGNAL_AD2EVT_SHIFT)
+#define SIGNAL_AD2EVT_T10		((uint32)((uint32)0x1U << SIGNAL_AD2EVT_SHIFT))
+#define SIGNAL_AD2EVT_V10		((uint32)((uint32)0x2U << SIGNAL_AD2EVT_SHIFT))
 
-#define SIGNAL_GIOA_0_A5		(0x1U << SIGNAL_GIOA_0_SHIFT)
-#define SIGNAL_GIOA_0_R5		(0x2U << SIGNAL_GIOA_0_SHIFT)
+#define SIGNAL_GIOA_0_A5		((uint32)((uint32)0x1U << SIGNAL_GIOA_0_SHIFT))
+#define SIGNAL_GIOA_0_R5		((uint32)((uint32)0x2U << SIGNAL_GIOA_0_SHIFT))
 
-#define SIGNAL_GIOA_1_C2		(0x1U << SIGNAL_GIOA_1_SHIFT)
-#define SIGNAL_GIOA_1_R6		(0x2U << SIGNAL_GIOA_1_SHIFT)
+#define SIGNAL_GIOA_1_C2		((uint32)((uint32)0x1U << SIGNAL_GIOA_1_SHIFT))
+#define SIGNAL_GIOA_1_R6		((uint32)((uint32)0x2U << SIGNAL_GIOA_1_SHIFT))
 
-#define SIGNAL_GIOA_2_C1		(0x1U << SIGNAL_GIOA_2_SHIFT)
-#define SIGNAL_GIOA_2_B15		(0x2U << SIGNAL_GIOA_2_SHIFT)
+#define SIGNAL_GIOA_2_C1		((uint32)((uint32)0x1U << SIGNAL_GIOA_2_SHIFT))
+#define SIGNAL_GIOA_2_B15		((uint32)((uint32)0x2U << SIGNAL_GIOA_2_SHIFT))
 
-#define SIGNAL_GIOA_3_E1		(0x1U << SIGNAL_GIOA_3_SHIFT)
-#define SIGNAL_GIOA_3_R7		(0x2U << SIGNAL_GIOA_3_SHIFT)
+#define SIGNAL_GIOA_3_E1		((uint32)((uint32)0x1U << SIGNAL_GIOA_3_SHIFT))
+#define SIGNAL_GIOA_3_R7		((uint32)((uint32)0x2U << SIGNAL_GIOA_3_SHIFT))
 
-#define SIGNAL_GIOA_4_A6		(0x1U << SIGNAL_GIOA_4_SHIFT)
-#define SIGNAL_GIOA_4_R8		(0x2U << SIGNAL_GIOA_4_SHIFT)
+#define SIGNAL_GIOA_4_A6		((uint32)((uint32)0x1U << SIGNAL_GIOA_4_SHIFT))
+#define SIGNAL_GIOA_4_R8		((uint32)((uint32)0x2U << SIGNAL_GIOA_4_SHIFT))
 
-#define SIGNAL_GIOA_5_B5		(0x1U << SIGNAL_GIOA_5_SHIFT)
-#define SIGNAL_GIOA_5_R9		(0x2U << SIGNAL_GIOA_5_SHIFT)
+#define SIGNAL_GIOA_5_B5		((uint32)((uint32)0x1U << SIGNAL_GIOA_5_SHIFT))
+#define SIGNAL_GIOA_5_R9		((uint32)((uint32)0x2U << SIGNAL_GIOA_5_SHIFT))
 
-#define SIGNAL_GIOA_6_H3		(0x1U << SIGNAL_GIOA_6_SHIFT)
-#define SIGNAL_GIOA_6_R10		(0x2U << SIGNAL_GIOA_6_SHIFT)
+#define SIGNAL_GIOA_6_H3		((uint32)((uint32)0x1U << SIGNAL_GIOA_6_SHIFT))
+#define SIGNAL_GIOA_6_R10		((uint32)((uint32)0x2U << SIGNAL_GIOA_6_SHIFT))
 
-#define SIGNAL_GIOA_7_M1		(0x1U << SIGNAL_GIOA_7_SHIFT)
-#define SIGNAL_GIOA_7_R11		(0x2U << SIGNAL_GIOA_7_SHIFT)
+#define SIGNAL_GIOA_7_M1		((uint32)((uint32)0x1U << SIGNAL_GIOA_7_SHIFT))
+#define SIGNAL_GIOA_7_R11		((uint32)((uint32)0x2U << SIGNAL_GIOA_7_SHIFT))
 
-#define SIGNAL_GIOB_0_M2		(0x1U << SIGNAL_GIOB_0_SHIFT)
-#define SIGNAL_GIOB_0_B8		(0x2U << SIGNAL_GIOB_0_SHIFT)
+#define SIGNAL_GIOB_0_M2		((uint32)((uint32)0x1U << SIGNAL_GIOB_0_SHIFT))
+#define SIGNAL_GIOB_0_B8		((uint32)((uint32)0x2U << SIGNAL_GIOB_0_SHIFT))
 
-#define SIGNAL_GIOB_1_K2		(0x1U << SIGNAL_GIOB_1_SHIFT)
-#define SIGNAL_GIOB_1_B16		(0x2U << SIGNAL_GIOB_1_SHIFT)
+#define SIGNAL_GIOB_1_K2		((uint32)((uint32)0x1U << SIGNAL_GIOB_1_SHIFT))
+#define SIGNAL_GIOB_1_B16		((uint32)((uint32)0x2U << SIGNAL_GIOB_1_SHIFT))
 
-#define SIGNAL_GIOB_2_F2		(0x1U << SIGNAL_GIOB_2_SHIFT)
-#define SIGNAL_GIOB_2_B9		(0x2U << SIGNAL_GIOB_2_SHIFT)
+#define SIGNAL_GIOB_2_F2		((uint32)((uint32)0x1U << SIGNAL_GIOB_2_SHIFT))
+#define SIGNAL_GIOB_2_B9		((uint32)((uint32)0x2U << SIGNAL_GIOB_2_SHIFT))
 
-#define SIGNAL_GIOB_3_W10		(0x1U << SIGNAL_GIOB_3_SHIFT)
-#define SIGNAL_GIOB_3_R4		(0x2U << SIGNAL_GIOB_3_SHIFT)
+#define SIGNAL_GIOB_3_W10		((uint32)((uint32)0x1U << SIGNAL_GIOB_3_SHIFT))
+#define SIGNAL_GIOB_3_R4		((uint32)((uint32)0x2U << SIGNAL_GIOB_3_SHIFT))
 
-#define SIGNAL_GIOB_4_G1		(0x1U << SIGNAL_GIOB_4_SHIFT)
-#define SIGNAL_GIOB_4_L17		(0x2U << SIGNAL_GIOB_4_SHIFT)
+#define SIGNAL_GIOB_4_G1		((uint32)((uint32)0x1U << SIGNAL_GIOB_4_SHIFT))
+#define SIGNAL_GIOB_4_L17		((uint32)((uint32)0x2U << SIGNAL_GIOB_4_SHIFT))
 
-#define SIGNAL_GIOB_5_G2		(0x1U << SIGNAL_GIOB_5_SHIFT)
-#define SIGNAL_GIOB_5_M17		(0x2U << SIGNAL_GIOB_5_SHIFT)
+#define SIGNAL_GIOB_5_G2		((uint32)((uint32)0x1U << SIGNAL_GIOB_5_SHIFT))
+#define SIGNAL_GIOB_5_M17		((uint32)((uint32)0x2U << SIGNAL_GIOB_5_SHIFT))
 
-#define SIGNAL_GIOB_6_J2		(0x1U << SIGNAL_GIOB_6_SHIFT)
-#define SIGNAL_GIOB_6_R3		(0x2U << SIGNAL_GIOB_6_SHIFT)
+#define SIGNAL_GIOB_6_J2		((uint32)((uint32)0x1U << SIGNAL_GIOB_6_SHIFT))
+#define SIGNAL_GIOB_6_R3		((uint32)((uint32)0x2U << SIGNAL_GIOB_6_SHIFT))
 
-#define SIGNAL_GIOB_7_F1		(0x1U << SIGNAL_GIOB_7_SHIFT)
-#define SIGNAL_GIOB_7_P3		(0x2U << SIGNAL_GIOB_7_SHIFT)
+#define SIGNAL_GIOB_7_F1		((uint32)((uint32)0x1U << SIGNAL_GIOB_7_SHIFT))
+#define SIGNAL_GIOB_7_P3		((uint32)((uint32)0x2U << SIGNAL_GIOB_7_SHIFT))
 
-#define SIGNAL_MDIO_F4		(0x1U << SIGNAL_MDIO_SHIFT)
-#define SIGNAL_MDIO_G3		(0x2U << SIGNAL_MDIO_SHIFT)
+#define SIGNAL_MDIO_F4		((uint32)((uint32)0x1U << SIGNAL_MDIO_SHIFT))
+#define SIGNAL_MDIO_G3		((uint32)((uint32)0x2U << SIGNAL_MDIO_SHIFT))
 
-#define SIGNAL_MIBSPI1NCS_4_U10		(0x1U << SIGNAL_MIBSPI1NCS_4_SHIFT)
-#define SIGNAL_MIBSPI1NCS_4_N1		(0x2U << SIGNAL_MIBSPI1NCS_4_SHIFT)
+#define SIGNAL_MIBSPI1NCS_4_U10		((uint32)((uint32)0x1U << SIGNAL_MIBSPI1NCS_4_SHIFT))
+#define SIGNAL_MIBSPI1NCS_4_N1		((uint32)((uint32)0x2U << SIGNAL_MIBSPI1NCS_4_SHIFT))
 
-#define SIGNAL_MIBSPI1NCS_5_U9		(0x1U << SIGNAL_MIBSPI1NCS_5_SHIFT)
-#define SIGNAL_MIBSPI1NCS_5_P1		(0x2U << SIGNAL_MIBSPI1NCS_5_SHIFT)
+#define SIGNAL_MIBSPI1NCS_5_U9		((uint32)((uint32)0x1U << SIGNAL_MIBSPI1NCS_5_SHIFT))
+#define SIGNAL_MIBSPI1NCS_5_P1		((uint32)((uint32)0x2U << SIGNAL_MIBSPI1NCS_5_SHIFT))
 
-#define SIGNAL_MII_COL_W4		(0x1U << SIGNAL_MII_COL_SHIFT)
-#define SIGNAL_MII_COL_F3		(0x2U << SIGNAL_MII_COL_SHIFT)
+#define SIGNAL_MII_COL_W4		((uint32)((uint32)0x1U << SIGNAL_MII_COL_SHIFT))
+#define SIGNAL_MII_COL_F3		((uint32)((uint32)0x2U << SIGNAL_MII_COL_SHIFT))
 
-#define SIGNAL_MII_CRS_V4		(0x1U << SIGNAL_MII_CRS_SHIFT)
-#define SIGNAL_MII_CRS_B4		(0x2U << SIGNAL_MII_CRS_SHIFT)
+#define SIGNAL_MII_CRS_V4		((uint32)((uint32)0x1U << SIGNAL_MII_CRS_SHIFT))
+#define SIGNAL_MII_CRS_B4		((uint32)((uint32)0x2U << SIGNAL_MII_CRS_SHIFT))
 
-#define SIGNAL_MII_RX_DV_U6		(0x1U << SIGNAL_MII_RX_DV_SHIFT)
-#define SIGNAL_MII_RX_DV_B11		(0x2U << SIGNAL_MII_RX_DV_SHIFT)
+#define SIGNAL_MII_RX_DV_U6		((uint32)((uint32)0x1U << SIGNAL_MII_RX_DV_SHIFT))
+#define SIGNAL_MII_RX_DV_B11		((uint32)((uint32)0x2U << SIGNAL_MII_RX_DV_SHIFT))
 
-#define SIGNAL_MII_RX_ER_U5		(0x1U << SIGNAL_MII_RX_ER_SHIFT)
-#define SIGNAL_MII_RX_ER_N19		(0x2U << SIGNAL_MII_RX_ER_SHIFT)
+#define SIGNAL_MII_RX_ER_U5		((uint32)((uint32)0x1U << SIGNAL_MII_RX_ER_SHIFT))
+#define SIGNAL_MII_RX_ER_N19		((uint32)((uint32)0x2U << SIGNAL_MII_RX_ER_SHIFT))
 
-#define SIGNAL_MII_RXCLK_T4		(0x1U << SIGNAL_MII_RXCLK_SHIFT)
-#define SIGNAL_MII_RXCLK_K19		(0x2U << SIGNAL_MII_RXCLK_SHIFT)
+#define SIGNAL_MII_RXCLK_T4		((uint32)((uint32)0x1U << SIGNAL_MII_RXCLK_SHIFT))
+#define SIGNAL_MII_RXCLK_K19		((uint32)((uint32)0x2U << SIGNAL_MII_RXCLK_SHIFT))
 
-#define SIGNAL_MII_RXD_0_U4		(0x1U << SIGNAL_MII_RXD_0_SHIFT)
-#define SIGNAL_MII_RXD_0_P1		(0x2U << SIGNAL_MII_RXD_0_SHIFT)
+#define SIGNAL_MII_RXD_0_U4		((uint32)((uint32)0x1U << SIGNAL_MII_RXD_0_SHIFT))
+#define SIGNAL_MII_RXD_0_P1		((uint32)((uint32)0x2U << SIGNAL_MII_RXD_0_SHIFT))
 
-#define SIGNAL_MII_RXD_1_T3		(0x1U << SIGNAL_MII_RXD_1_SHIFT)
-#define SIGNAL_MII_RXD_1_A14		(0x2U << SIGNAL_MII_RXD_1_SHIFT)
+#define SIGNAL_MII_RXD_1_T3		((uint32)((uint32)0x1U << SIGNAL_MII_RXD_1_SHIFT))
+#define SIGNAL_MII_RXD_1_A14		((uint32)((uint32)0x2U << SIGNAL_MII_RXD_1_SHIFT))
 
-#define SIGNAL_MII_RXD_2_U3		(0x1U << SIGNAL_MII_RXD_2_SHIFT)
-#define SIGNAL_MII_RXD_2_G19		(0x2U << SIGNAL_MII_RXD_2_SHIFT)
+#define SIGNAL_MII_RXD_2_U3		((uint32)((uint32)0x1U << SIGNAL_MII_RXD_2_SHIFT))
+#define SIGNAL_MII_RXD_2_G19		((uint32)((uint32)0x2U << SIGNAL_MII_RXD_2_SHIFT))
 
-#define SIGNAL_MII_RXD_3_V3		(0x1U << SIGNAL_MII_RXD_3_SHIFT)
-#define SIGNAL_MII_RXD_3_H18		(0x2U << SIGNAL_MII_RXD_3_SHIFT)
+#define SIGNAL_MII_RXD_3_V3		((uint32)((uint32)0x1U << SIGNAL_MII_RXD_3_SHIFT))
+#define SIGNAL_MII_RXD_3_H18		((uint32)((uint32)0x2U << SIGNAL_MII_RXD_3_SHIFT))
 
-#define SIGNAL_MII_TX_CLK_U7		(0x1U << SIGNAL_MII_TX_CLK_SHIFT)
-#define SIGNAL_MII_TX_CLK_D19		(0x2U << SIGNAL_MII_TX_CLK_SHIFT)
+#define SIGNAL_MII_TX_CLK_U7		((uint32)((uint32)0x1U << SIGNAL_MII_TX_CLK_SHIFT))
+#define SIGNAL_MII_TX_CLK_D19		((uint32)((uint32)0x2U << SIGNAL_MII_TX_CLK_SHIFT))
 
-#define SIGNAL_N2HET1_17_A13		(0x1U << SIGNAL_N2HET1_17_SHIFT)
-#define SIGNAL_N2HET1_17_F3		(0x2U << SIGNAL_N2HET1_17_SHIFT)
+#define SIGNAL_N2HET1_17_A13		((uint32)((uint32)0x1U << SIGNAL_N2HET1_17_SHIFT))
+#define SIGNAL_N2HET1_17_F3		((uint32)((uint32)0x2U << SIGNAL_N2HET1_17_SHIFT))
 
-#define SIGNAL_N2HET1_19_B13		(0x1U << SIGNAL_N2HET1_19_SHIFT)
-#define SIGNAL_N2HET1_19_G3		(0x2U << SIGNAL_N2HET1_19_SHIFT)
+#define SIGNAL_N2HET1_19_B13		((uint32)((uint32)0x1U << SIGNAL_N2HET1_19_SHIFT))
+#define SIGNAL_N2HET1_19_G3		((uint32)((uint32)0x2U << SIGNAL_N2HET1_19_SHIFT))
 
-#define SIGNAL_N2HET1_21_H4		(0x1U << SIGNAL_N2HET1_21_SHIFT)
-#define SIGNAL_N2HET1_21_J3		(0x2U << SIGNAL_N2HET1_21_SHIFT)
+#define SIGNAL_N2HET1_21_H4		((uint32)((uint32)0x1U << SIGNAL_N2HET1_21_SHIFT))
+#define SIGNAL_N2HET1_21_J3		((uint32)((uint32)0x2U << SIGNAL_N2HET1_21_SHIFT))
 
-#define SIGNAL_N2HET1_23_J4		(0x1U << SIGNAL_N2HET1_23_SHIFT)
-#define SIGNAL_N2HET1_23_G19		(0x2U << SIGNAL_N2HET1_23_SHIFT)
+#define SIGNAL_N2HET1_23_J4		((uint32)((uint32)0x1U << SIGNAL_N2HET1_23_SHIFT))
+#define SIGNAL_N2HET1_23_G19		((uint32)((uint32)0x2U << SIGNAL_N2HET1_23_SHIFT))
 
-#define SIGNAL_N2HET1_25_M3		(0x1U << SIGNAL_N2HET1_25_SHIFT)
-#define SIGNAL_N2HET1_25_V5		(0x2U << SIGNAL_N2HET1_25_SHIFT)
+#define SIGNAL_N2HET1_25_M3		((uint32)((uint32)0x1U << SIGNAL_N2HET1_25_SHIFT))
+#define SIGNAL_N2HET1_25_V5		((uint32)((uint32)0x2U << SIGNAL_N2HET1_25_SHIFT))
 
-#define SIGNAL_N2HET1_27_A9		(0x1U << SIGNAL_N2HET1_27_SHIFT)
-#define SIGNAL_N2HET1_27_B2		(0x2U << SIGNAL_N2HET1_27_SHIFT)
+#define SIGNAL_N2HET1_27_A9		((uint32)((uint32)0x1U << SIGNAL_N2HET1_27_SHIFT))
+#define SIGNAL_N2HET1_27_B2		((uint32)((uint32)0x2U << SIGNAL_N2HET1_27_SHIFT))
 
-#define SIGNAL_N2HET1_29_A3		(0x1U << SIGNAL_N2HET1_29_SHIFT)
-#define SIGNAL_N2HET1_29_C3		(0x2U << SIGNAL_N2HET1_29_SHIFT)
+#define SIGNAL_N2HET1_29_A3		((uint32)((uint32)0x1U << SIGNAL_N2HET1_29_SHIFT))
+#define SIGNAL_N2HET1_29_C3		((uint32)((uint32)0x2U << SIGNAL_N2HET1_29_SHIFT))
 
-#define SIGNAL_N2HET1_31_J17		(0x1U << SIGNAL_N2HET1_31_SHIFT)
-#define SIGNAL_N2HET1_31_W9		(0x2U << SIGNAL_N2HET1_31_SHIFT)
+#define SIGNAL_N2HET1_31_J17		((uint32)((uint32)0x1U << SIGNAL_N2HET1_31_SHIFT))
+#define SIGNAL_N2HET1_31_W9		((uint32)((uint32)0x2U << SIGNAL_N2HET1_31_SHIFT))
 
-#define SIGNAL_N2HET2_00_D6		(0x1U << SIGNAL_N2HET2_00_SHIFT)
-#define SIGNAL_N2HET2_00_C1		(0x2U << SIGNAL_N2HET2_00_SHIFT)
+#define SIGNAL_N2HET2_00_D6		((uint32)((uint32)0x1U << SIGNAL_N2HET2_00_SHIFT))
+#define SIGNAL_N2HET2_00_C1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_00_SHIFT))
 
-#define SIGNAL_N2HET2_01_D8		(0x1U << SIGNAL_N2HET2_01_SHIFT)
-#define SIGNAL_N2HET2_01_D4		(0x2U << SIGNAL_N2HET2_01_SHIFT)
+#define SIGNAL_N2HET2_01_D8		((uint32)((uint32)0x1U << SIGNAL_N2HET2_01_SHIFT))
+#define SIGNAL_N2HET2_01_D4		((uint32)((uint32)0x2U << SIGNAL_N2HET2_01_SHIFT))
 
-#define SIGNAL_N2HET2_02_D7		(0x1U << SIGNAL_N2HET2_02_SHIFT)
-#define SIGNAL_N2HET2_02_E1		(0x2U << SIGNAL_N2HET2_02_SHIFT)
+#define SIGNAL_N2HET2_02_D7		((uint32)((uint32)0x1U << SIGNAL_N2HET2_02_SHIFT))
+#define SIGNAL_N2HET2_02_E1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_02_SHIFT))
 
-#define SIGNAL_N2HET2_03_E2		(0x1U << SIGNAL_N2HET2_03_SHIFT)
-#define SIGNAL_N2HET2_03_D5		(0x2U << SIGNAL_N2HET2_03_SHIFT)
+#define SIGNAL_N2HET2_03_E2		((uint32)((uint32)0x1U << SIGNAL_N2HET2_03_SHIFT))
+#define SIGNAL_N2HET2_03_D5		((uint32)((uint32)0x2U << SIGNAL_N2HET2_03_SHIFT))
 
-#define SIGNAL_N2HET2_04_D13		(0x1U << SIGNAL_N2HET2_04_SHIFT)
-#define SIGNAL_N2HET2_04_H3		(0x2U << SIGNAL_N2HET2_04_SHIFT)
+#define SIGNAL_N2HET2_04_D13		((uint32)((uint32)0x1U << SIGNAL_N2HET2_04_SHIFT))
+#define SIGNAL_N2HET2_04_H3		((uint32)((uint32)0x2U << SIGNAL_N2HET2_04_SHIFT))
 
-#define SIGNAL_N2HET2_05_D12		(0x1U << SIGNAL_N2HET2_05_SHIFT)
-#define SIGNAL_N2HET2_05_D16		(0x2U << SIGNAL_N2HET2_05_SHIFT)
+#define SIGNAL_N2HET2_05_D12		((uint32)((uint32)0x1U << SIGNAL_N2HET2_05_SHIFT))
+#define SIGNAL_N2HET2_05_D16		((uint32)((uint32)0x2U << SIGNAL_N2HET2_05_SHIFT))
 
-#define SIGNAL_N2HET2_06_D11		(0x1U << SIGNAL_N2HET2_06_SHIFT)
-#define SIGNAL_N2HET2_06_M1		(0x2U << SIGNAL_N2HET2_06_SHIFT)
+#define SIGNAL_N2HET2_06_D11		((uint32)((uint32)0x1U << SIGNAL_N2HET2_06_SHIFT))
+#define SIGNAL_N2HET2_06_M1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_06_SHIFT))
 
-#define SIGNAL_N2HET2_07_N3		(0x1U << SIGNAL_N2HET2_07_SHIFT)
-#define SIGNAL_N2HET2_07_N17		(0x2U << SIGNAL_N2HET2_07_SHIFT)
+#define SIGNAL_N2HET2_07_N3		((uint32)((uint32)0x1U << SIGNAL_N2HET2_07_SHIFT))
+#define SIGNAL_N2HET2_07_N17		((uint32)((uint32)0x2U << SIGNAL_N2HET2_07_SHIFT))
 
-#define SIGNAL_N2HET2_08_K16		(0x1U << SIGNAL_N2HET2_08_SHIFT)
-#define SIGNAL_N2HET2_08_V2		(0x2U << SIGNAL_N2HET2_08_SHIFT)
+#define SIGNAL_N2HET2_08_K16		((uint32)((uint32)0x1U << SIGNAL_N2HET2_08_SHIFT))
+#define SIGNAL_N2HET2_08_V2		((uint32)((uint32)0x2U << SIGNAL_N2HET2_08_SHIFT))
 
-#define SIGNAL_N2HET2_09_L16		(0x1U << SIGNAL_N2HET2_09_SHIFT)
-#define SIGNAL_N2HET2_09_K17		(0x2U << SIGNAL_N2HET2_09_SHIFT)
+#define SIGNAL_N2HET2_09_L16		((uint32)((uint32)0x1U << SIGNAL_N2HET2_09_SHIFT))
+#define SIGNAL_N2HET2_09_K17		((uint32)((uint32)0x2U << SIGNAL_N2HET2_09_SHIFT))
 
-#define SIGNAL_N2HET2_10_M16		(0x1U << SIGNAL_N2HET2_10_SHIFT)
-#define SIGNAL_N2HET2_10_U1		(0x2U << SIGNAL_N2HET2_10_SHIFT)
+#define SIGNAL_N2HET2_10_M16		((uint32)((uint32)0x1U << SIGNAL_N2HET2_10_SHIFT))
+#define SIGNAL_N2HET2_10_U1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_10_SHIFT))
 
-#define SIGNAL_N2HET2_11_N16		(0x1U << SIGNAL_N2HET2_11_SHIFT)
-#define SIGNAL_N2HET2_11_C4		(0x2U << SIGNAL_N2HET2_11_SHIFT)
+#define SIGNAL_N2HET2_11_N16		((uint32)((uint32)0x1U << SIGNAL_N2HET2_11_SHIFT))
+#define SIGNAL_N2HET2_11_C4		((uint32)((uint32)0x2U << SIGNAL_N2HET2_11_SHIFT))
 
-#define SIGNAL_N2HET2_12_D3		(0x1U << SIGNAL_N2HET2_12_SHIFT)
-#define SIGNAL_N2HET2_12_V6		(0x2U << SIGNAL_N2HET2_12_SHIFT)
+#define SIGNAL_N2HET2_12_D3		((uint32)((uint32)0x1U << SIGNAL_N2HET2_12_SHIFT))
+#define SIGNAL_N2HET2_12_V6		((uint32)((uint32)0x2U << SIGNAL_N2HET2_12_SHIFT))
 
-#define SIGNAL_N2HET2_13_D2		(0x1U << SIGNAL_N2HET2_13_SHIFT)
-#define SIGNAL_N2HET2_13_C5		(0x2U << SIGNAL_N2HET2_13_SHIFT)
+#define SIGNAL_N2HET2_13_D2		((uint32)((uint32)0x1U << SIGNAL_N2HET2_13_SHIFT))
+#define SIGNAL_N2HET2_13_C5		((uint32)((uint32)0x2U << SIGNAL_N2HET2_13_SHIFT))
 
-#define SIGNAL_N2HET2_14_D1		(0x1U << SIGNAL_N2HET2_14_SHIFT)
-#define SIGNAL_N2HET2_14_T1		(0x2U << SIGNAL_N2HET2_14_SHIFT)
+#define SIGNAL_N2HET2_14_D1		((uint32)((uint32)0x1U << SIGNAL_N2HET2_14_SHIFT))
+#define SIGNAL_N2HET2_14_T1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_14_SHIFT))
 
-#define SIGNAL_N2HET2_15_K4		(0x1U << SIGNAL_N2HET2_15_SHIFT)
-#define SIGNAL_N2HET2_15_C6		(0x2U << SIGNAL_N2HET2_15_SHIFT)
+#define SIGNAL_N2HET2_15_K4		((uint32)((uint32)0x1U << SIGNAL_N2HET2_15_SHIFT))
+#define SIGNAL_N2HET2_15_C6		((uint32)((uint32)0x2U << SIGNAL_N2HET2_15_SHIFT))
 
-#define SIGNAL_N2HET2_16_L4		(0x1U << SIGNAL_N2HET2_16_SHIFT)
-#define SIGNAL_N2HET2_16_V7		(0x2U << SIGNAL_N2HET2_16_SHIFT)
+#define SIGNAL_N2HET2_16_L4		((uint32)((uint32)0x1U << SIGNAL_N2HET2_16_SHIFT))
+#define SIGNAL_N2HET2_16_V7		((uint32)((uint32)0x2U << SIGNAL_N2HET2_16_SHIFT))
 
-#define SIGNAL_N2HET2_18_N4		(0x1U << SIGNAL_N2HET2_18_SHIFT)
-#define SIGNAL_N2HET2_18_E3		(0x2U << SIGNAL_N2HET2_18_SHIFT)
+#define SIGNAL_N2HET2_18_N4		((uint32)((uint32)0x1U << SIGNAL_N2HET2_18_SHIFT))
+#define SIGNAL_N2HET2_18_E3		((uint32)((uint32)0x2U << SIGNAL_N2HET2_18_SHIFT))
 
-#define SIGNAL_N2HET2_20_T5		(0x1U << SIGNAL_N2HET2_20_SHIFT)
-#define SIGNAL_N2HET2_20_N2		(0x2U << SIGNAL_N2HET2_20_SHIFT)
+#define SIGNAL_N2HET2_20_T5		((uint32)((uint32)0x1U << SIGNAL_N2HET2_20_SHIFT))
+#define SIGNAL_N2HET2_20_N2		((uint32)((uint32)0x2U << SIGNAL_N2HET2_20_SHIFT))
 
-#define SIGNAL_N2HET2_22_T7		(0x1U << SIGNAL_N2HET2_22_SHIFT)
-#define SIGNAL_N2HET2_22_N1		(0x2U << SIGNAL_N2HET2_22_SHIFT)
+#define SIGNAL_N2HET2_22_T7		((uint32)((uint32)0x1U << SIGNAL_N2HET2_22_SHIFT))
+#define SIGNAL_N2HET2_22_N1		((uint32)((uint32)0x2U << SIGNAL_N2HET2_22_SHIFT))
 
-#define SIGNAL_nTZ1_1_N19		(0x1U << SIGNAL_nTZ1_1_SHIFT)
-#define SIGNAL_nTZ1_1_C3		(0x2U << SIGNAL_nTZ1_1_SHIFT)
+#define SIGNAL_nTZ1_1_N19		((uint32)((uint32)0x1U << SIGNAL_nTZ1_1_SHIFT))
+#define SIGNAL_nTZ1_1_C3		((uint32)((uint32)0x2U << SIGNAL_nTZ1_1_SHIFT))
 
-#define SIGNAL_nTZ1_2_F1		(0x1U << SIGNAL_nTZ1_2_SHIFT)
-#define SIGNAL_nTZ1_2_B2		(0x2U << SIGNAL_nTZ1_2_SHIFT)
+#define SIGNAL_nTZ1_2_F1		((uint32)((uint32)0x1U << SIGNAL_nTZ1_2_SHIFT))
+#define SIGNAL_nTZ1_2_B2		((uint32)((uint32)0x2U << SIGNAL_nTZ1_2_SHIFT))
 
-#define SIGNAL_nTZ1_3_J3		(0x1U << SIGNAL_nTZ1_3_SHIFT)
-#define SIGNAL_nTZ1_3_D19		(0x2U << SIGNAL_nTZ1_3_SHIFT)
+#define SIGNAL_nTZ1_3_J3		((uint32)((uint32)0x1U << SIGNAL_nTZ1_3_SHIFT))
+#define SIGNAL_nTZ1_3_D19		((uint32)((uint32)0x2U << SIGNAL_nTZ1_3_SHIFT))
 
 
 

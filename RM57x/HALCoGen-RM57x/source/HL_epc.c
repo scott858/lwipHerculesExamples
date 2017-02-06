@@ -1,11 +1,44 @@
 /** @file HL_epc.c
 *   @brief EPC Driver Implementation File
-*   @date 20.May.2014
-*   @version 04.00.00
-*	This file contains APIs for the Error Profiling Controller Module.
+*   @date 05-Oct-2016
+*   @version 04.06.00
+*   This file contains APIs for the Error Profiling Controller Module.
 */
 
-/* (c) Texas Instruments 2009-2013, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
@@ -22,15 +55,15 @@
 *   @brief Enable ECC error generation for ECC errors on DMA Port A
 *
 *   Enable ECC error generation for ECC errors detected on DMA Port A master by the
-*	CPU Interconnect Subsystem
+*   CPU Interconnect Subsystem
 */
 void epcEnableIP1ErrorGen(void)
 {
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
 
-	systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFFFF0U) | 0xAU;
-	
+    systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFFFF0U) | 0xAU;
+    
 /* USER CODE BEGIN (3) */
 /* USER CODE END */
 }
@@ -39,15 +72,15 @@ void epcEnableIP1ErrorGen(void)
 *   @brief Disable ECC error generation for ECC errors on DMA Port A
 *
 *   Disable ECC error generation for ECC errors detected on DMA Port A master by the
-*	CPU Interconnect Subsystem
+*   CPU Interconnect Subsystem
 */
 void epcDisableIP1ErrorGen(void)
 {
 /* USER CODE BEGIN (4) */
 /* USER CODE END */
 
-	systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFFFF0U) | 0x5U;
-	
+    systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFFFF0U) | 0x5U;
+    
 /* USER CODE BEGIN (5) */
 /* USER CODE END */
 }
@@ -56,15 +89,15 @@ void epcDisableIP1ErrorGen(void)
 *   @brief Enable ECC error generation for ECC errors on PS_SCR_M
 *
 *   Enable ECC error generation for ECC errors detected on PS_SCR_M master by the
-*	CPU Interconnect Subsystem
+*   CPU Interconnect Subsystem
 */
 void epcEnableIP2ErrorGen(void)
 {
 /* USER CODE BEGIN (6) */
 /* USER CODE END */
 
-	systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFF0FFU) | 0xA00U;
-	
+    systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFF0FFU) | 0xA00U;
+    
 /* USER CODE BEGIN (7) */
 /* USER CODE END */
 }
@@ -73,15 +106,15 @@ void epcEnableIP2ErrorGen(void)
 *   @brief Disable ECC error generation for ECC errors on PS_SCR_M
 *
 *   Disable ECC error generation for ECC errors detected on PS_SCR_M master by the
-*	CPU Interconnect Subsystem
+*   CPU Interconnect Subsystem
 */
 void epcDisableIP2ErrorGen(void)
 {
 /* USER CODE BEGIN (8) */
 /* USER CODE END */
 
-	systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFF0FFU) | 0x500U;
-	
+    systemREG2->IP1ECCERREN = (systemREG2->IP1ECCERREN & 0xFFFFF0FFU) | 0x500U;
+    
 /* USER CODE BEGIN (9) */
 /* USER CODE END */
 }
@@ -90,16 +123,16 @@ void epcDisableIP2ErrorGen(void)
 *   @brief Single (correctable) bit error event enable.
 *
 *   These bits (when enabled) cause EPC to
-*	generate the serr_event if there is a correctable ECC fault address arrives from one of
-*	the EPC-IP interface and the CAM has an empty entry.
+*   generate the serr_event if there is a correctable ECC fault address arrives from one of
+*   the EPC-IP interface and the CAM has an empty entry.
 */
 void epcEnableSERREvent(void)
 {
 /* USER CODE BEGIN (10) */
 /* USER CODE END */
 
-	epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFFFF0U) | 0xAU;
-	
+    epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFFFF0U) | 0xAU;
+    
 /* USER CODE BEGIN (11) */
 /* USER CODE END */
 }
@@ -108,15 +141,15 @@ void epcEnableSERREvent(void)
 *   @brief Single (correctable) bit error event disable.
 *
 *   These bits (when enabled) cause EPC to
-*	disable the serr_event generation.
+*   disable the serr_event generation.
 */
 void epcDisableSERREvent(void)
 {
 /* USER CODE BEGIN (12) */
 /* USER CODE END */
 
-	epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFFFF0U) | 0x5U;
-	
+    epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFFFF0U) | 0x5U;
+    
 /* USER CODE BEGIN (13) */
 /* USER CODE END */
 }
@@ -125,14 +158,14 @@ void epcDisableSERREvent(void)
 *   @brief CAM or FIFO full interrupt enable.
 *
 *   If this bit is set and CAM is full, CAM Full Interrupt
-*	is generated.
+*   is generated.
 */
 void epcEnableInterrupt(void)
 {
 /* USER CODE BEGIN (14) */
 /* USER CODE END */
 
-	epcREG1->EPCCNTRL |= (uint32)((uint32)1U<<24U);
+    epcREG1->EPCCNTRL |= (uint32)((uint32)1U<<24U);
 
 /* USER CODE BEGIN (15) */
 /* USER CODE END */
@@ -148,7 +181,7 @@ void epcDisableInterrupt(void)
 /* USER CODE BEGIN (16) */
 /* USER CODE END */
 
-	epcREG1->EPCCNTRL &= ~(uint32)((uint32)1U<<24U);
+    epcREG1->EPCCNTRL &= ~(uint32)((uint32)1U<<24U);
 
 /* USER CODE BEGIN (17) */
 /* USER CODE END */
@@ -157,142 +190,146 @@ void epcDisableInterrupt(void)
 /** @fn void epcCAMInit(void)
 *   @brief Initializes CAM.
 *
-*  	CAM entries are cleared and available for future CAM usage.
+*   CAM entries are cleared and available for future CAM usage.
 */
 void epcCAMInit(void)
 {
-	int i;
+    uint8 i;
 /* USER CODE BEGIN (18) */
 /* USER CODE END */
 
-	for(i=0; i<8; i++)
-	{
-		epcREG1->CAM_INDEX[i] = 0x05050505U;
-	}
+    for(i=0U; i<8U; i++)
+    {
+        epcREG1->CAM_INDEX[i] = 0x05050505U;
+    }
 /* USER CODE BEGIN (19) */
 /* USER CODE END */
 }
 
 /** @fn void epcDiagnosticTest(void)
-*   @brief CAM diagnostic enable.
+*   @brief CAM diagnostic test.
+*   @return TRUE if diagnostic test passed, FALSE otherwise
 *
-*  	These bits (when enabled) allow the CPU to access the
-*	CAM content to clear or set any entry (CAM index) or write any pattern to CAM
-*	content.
+*   This function executes a diagnostic test on EPC and returns the result
 */
 boolean epcDiagnosticTest(void)
 {
-	uint32 epccntrl_bk, camCont_bk, camIndex_bk;
-	uint32 camAvailable;
-	boolean status = true;
+    uint32 epccntrl_bk, camCont_bk, camIndex_bk;
+    uint32 camAvailable;
+    boolean status = true;
 
 /* USER CODE BEGIN (20) */
 /* USER CODE END */
 
-	/* Back up EPCCNTRL register */
-	epccntrl_bk = epcREG1->EPCCNTRL;
+    /* Back up EPCCNTRL register */
+    epccntrl_bk = epcREG1->EPCCNTRL;
 
-	/* Back up CAM_CONTENT[0] and CAM_INDEX[0] registers */
-	camCont_bk = epcREG1->CAM_CONTENT[0U];
-	camIndex_bk = epcREG1->CAM_INDEX[0U];
+    /* Back up CAM_CONTENT[0] and CAM_INDEX[0] registers */
+    camCont_bk = epcREG1->CAM_CONTENT[0U];
+    camIndex_bk = epcREG1->CAM_INDEX[0U];
 
-	/* Enter CAM diagnostic mode and and enable Single (correctable) bit error event generation */
-	epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFF0F0U) | 0x0A0AU;
+    /* Enter CAM diagnostic mode and and enable Single (correctable) bit error event generation */
+    epcREG1->EPCCNTRL = (epcREG1->EPCCNTRL & 0xFFFFF0F0U) | 0x0A0AU;
 
-	/* Clear first CAM entry */
-	epcREG1->CAM_INDEX[0U] = (epcREG1->CAM_INDEX[0U] & 0xFFFFFFF0U) | 0x5U;
+    /* Clear first CAM entry */
+    epcREG1->CAM_INDEX[0U] = (epcREG1->CAM_INDEX[0U] & 0xFFFFFFF0U) | 0x5U;
 
-	/* Identify the number of CAM entries available */
-	camAvailable = epcREG1->CAMAVAILSTAT;
+    /* Identify the number of CAM entries available */
+    camAvailable = epcREG1->CAMAVAILSTAT;
 
-	/* New CAM Entry */
-	epcREG1->CAM_CONTENT[0U] = 0x1000U;
+    /* New CAM Entry */
+    epcREG1->CAM_CONTENT[0U] = 0x1000U;
 
-	/* The number of CAM entries must reduce by 1 */
-	if(((esmREG->SR1[0U] & 0x10U) != 0x10U) || (epcREG1->CAMAVAILSTAT != (camAvailable - 1U)) || (epcCheckCAMEntry(0U) == true))
-	{
-		status = false;
-	}
+    /* The number of CAM entries must reduce by 1 */
+    if(((esmREG->SR1[0U] & 0x10U) != 0x10U) || (epcREG1->CAMAVAILSTAT != (camAvailable - 1U)) || (epcCheckCAMEntry(0U) == true))
+    {
+        status = false;
+    }
 
 
-	/* Restore CAM_CONTENT and CAM_INDEX[0] registers */
-	epcREG1->CAM_CONTENT[0U] = camCont_bk;
-	epcREG1->CAM_INDEX[0U] = camIndex_bk;
+    /* Restore CAM_CONTENT and CAM_INDEX[0] registers */
+    epcREG1->CAM_CONTENT[0U] = camCont_bk;
+    epcREG1->CAM_INDEX[0U] = camIndex_bk;
 
-	/* Disable CAM diagnostic mode and restore EPCCNTRL register */
-	epcREG1->EPCCNTRL = epccntrl_bk;
+    /* Disable CAM diagnostic mode and restore EPCCNTRL register */
+    epcREG1->EPCCNTRL = epccntrl_bk;
 
 /* USER CODE BEGIN (21) */
 /* USER CODE END */
 
-	return status;
+    return status;
 }
 
 /** @fn void epcAddCAMEEntry(uint32 address)
 *   @brief Add a new CAM Entry
 *
-*  	Allows you to write a new CAM entry, after checking if there are any available entries.
+*   Allows you to write a new CAM entry, after checking if there are any available entries.
 */
 boolean epcAddCAMEEntry(uint32 address)
 {
-	int i = 0;
-	boolean status = false;
+    uint8 i = 0U;
+    boolean status = false;
 
 /* USER CODE BEGIN (22) */
 /* USER CODE END */
 
-	if(epcREG1->CAMAVAILSTAT !=0U)
-	{
+    if(epcREG1->CAMAVAILSTAT !=0U)
+    {
 
-		for(i=0; i<32; i++)
-		{
-			if(epcCheckCAMEntry(i) == true)
-			{
-				epcREG1->CAM_CONTENT[i] = address;
-				status = true;
-				break;
-			}
-		}
-	}
-	else
-	{
-		status = false;
-	}
+        for(i=0U; i<32U; i++)
+        {
+            if(epcCheckCAMEntry(i) == true)
+            {
+                epcREG1->CAM_CONTENT[i] = address;
+                status = true;
+                break;
+            }
+        }
+    }
+    else
+    {
+        status = false;
+    }
 
 /* USER CODE BEGIN (23) */
 /* USER CODE END */
 
-	return status;
+    return status;
 }
 
 /** @fn void epcCheckCAMEntry(uint32 CAMIndex)
 *   @brief Checks if CAM entry is available.
 *
-*  	Checks if the CAM Entry is available and ready for future usage.
+*   Checks if the CAM Entry is available and ready for future usage.
 */
 boolean epcCheckCAMEntry(uint32 index)
 {
-	uint32 i,j;
-	boolean status = false;
+    uint32 i,j;
+    boolean status = false;
 
 /* USER CODE BEGIN (24) */
 /* USER CODE END */
 
-	i = index / 4U;
-	j = (index % 4U) * 8U;
+    i = index / 4U;
+    j = (index % 4U) * 8U;
 
-	/* Check for availability of CAM Entry for future CAM usage. */
-	if((epcREG1->CAM_INDEX[i] & (uint32)((uint32)0xFU<<j)) == (uint32)((uint32)0x5U<<j))
-	{
-		status = true;
-	}
-	else
-	{
-		status= false;
-	}
+    /* Check for availability of CAM Entry for future CAM usage. */
+    if((epcREG1->CAM_INDEX[i] & (uint32)((uint32)0xFU<<j)) == (uint32)((uint32)0x5U<<j))
+    {
+        status = true;
+    }
+    else
+    {
+        status= false;
+    }
 
 /* USER CODE BEGIN (25) */
 /* USER CODE END */
-	return status;
+    return status;
 }
+
+
+/* USER CODE BEGIN (28) */
+/* USER CODE END */
+
 

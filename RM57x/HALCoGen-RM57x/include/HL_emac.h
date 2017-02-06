@@ -6,21 +6,60 @@
  *   This file contains the driver API prototypes and macro definitions.
  */
 
-/* (c) Texas Instruments 2009-2014, All rights reserved. */
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 #ifndef __EMAC_H__
 #define __EMAC_H__
+
+/* USER CODE BEGIN (0) */
+/* USER CODE END */
 
 #include "HL_sys_common.h"
 #include "HL_hw_reg_access.h"
 #include "HL_hw_emac.h"
 #include "HL_hw_emac_ctrl.h"
 #include "HL_mdio.h"
-#include "HL_phy_dp83640.h"
+#include "HL_emac_phyConfig.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/* USER CODE BEGIN (1) */
+/* USER CODE END */
 
 /*****************************************************************************/
 /*
@@ -121,7 +160,7 @@ extern "C" {
 #define EMAC_RXINTMASKSET_CONFIGVALUE 0x00000001U
 #define EMAC_RXINTMASKCLEAR_CONFIGVALUE 0x00000001U
 #define EMAC_MACSRCADDRHI_CONFIGVALUE ((uint32)((uint32)0x03U << 24U) | (uint32)((uint32)0xEEU << 16U) | (uint32)((uint32)0x08U << 8U) | (uint32)((uint32)0x00U))
-#define EMAC_MACSRCADDRLO_CONFIGVALUE ((uint32)((uint32)0x6CU << 8U) | (uint32)((uint32)0x08U))
+#define EMAC_MACSRCADDRLO_CONFIGVALUE ((uint32)((uint32)0x6CU << 8U) | (uint32)((uint32)0xA6U))
 #define EMAC_MDIOCONTROL_CONFIGVALUE 0x4114001FU
 #define EMAC_C0RXEN_CONFIGVALUE 0x00000001U
 #define EMAC_C0TXEN_CONFIGVALUE 0x00000001U
@@ -273,14 +312,14 @@ uint32 C0TXEN; /*EMAC Control Module Transmit Interrupt Enable Register*/
  *  module and is considered integral to the EMAC/MDIO peripheral
  *
  *	Related Files
- *   - emac.h
- *   - emac.c
- *   - hw_emac.h
- *   - hw_emac_ctrl.h
- *   - hw_mdio.h
- *   - hw_reg_access.h	
- *   - mdio.h
- *   - mdio.c
+ *   - HL_emac.h
+ *   - HL_emac.c
+ *   - HL_hw_emac.h
+ *   - HL_hw_emac_ctrl.h
+ *   - HL_hw_mdio.h
+ *   - HL_hw_reg_access.h	
+ *   - HL_mdio.h
+ *   - HL_mdio.c
  *  @addtogroup EMACMDIO
  *  @{
  */
@@ -355,6 +394,8 @@ void EMACTxIntStat(uint32 emacBase, uint32 channel, emac_tx_int_status_t *txints
 void EMACRxIntStat(uint32 emacBase, uint32 channel, emac_rx_int_status_t *rxintstat);
 void EMACGetConfigValue(emac_config_reg_t *config_reg, config_value_type_t type);
 
+/* USER CODE BEGIN (2) */
+/* USER CODE END */
 
 #ifdef __cplusplus
 }

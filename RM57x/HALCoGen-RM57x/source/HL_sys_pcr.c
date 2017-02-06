@@ -1,7 +1,7 @@
 /** @file HL_sys_pcr.c
 *   @brief PCR Driver Source File
-*   @date 20.May.2014
-*   @version 04.00.00
+*   @date 05-Oct-2016
+*   @version 04.06.00
 *
 *   This file contains:
 *   - API Functions
@@ -9,6 +9,41 @@
 *   .
 *   which are relevant for the PCR driver.
 */
+
+/* 
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
+* 
+* 
+*  Redistribution and use in source and binary forms, with or without 
+*  modification, are permitted provided that the following conditions 
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright 
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the 
+*    documentation and/or other materials provided with the   
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
 
 #include "HL_sys_pcr.h"
 
@@ -19,7 +54,7 @@
 *   @param[in] PCS   Peripheral memory chip select (PCS0..PCS63)
 *
 *   This function enables peripheral memory protection (write in privileged mode only) for the selected frame
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_Protection_Set(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 {
@@ -46,7 +81,7 @@ void peripheral_Memory_Protection_Set(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 *   @param[in] PCS   Peripheral memory chip select (PCS0..PCS63)
 *
 *   This function disables peripheral memory protection (write in privileged mode only) for the selected frame
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_Protection_Clr(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 {
@@ -78,7 +113,7 @@ void peripheral_Memory_Protection_Clr(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 *		                    - QUADRANT3
 *
 *   This function enables peripheral frame protection (write in privileged mode only) for the selected frame
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_Protection_Set(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant)
 {
@@ -120,7 +155,7 @@ void peripheral_Frame_Protection_Set(pcrBASE_t *pcr, peripheral_Frame_t PS, uint
 *		                    - QUADRANT3
 *
 *   This function disables peripheral frame protection (write in privileged mode only) for the selected frame
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_Protection_Clr(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant)
 {
@@ -157,7 +192,7 @@ void peripheral_Frame_Protection_Clr(pcrBASE_t *pcr, peripheral_Frame_t PS, uint
 *   @param[in] PCS   Peripheral memory chip select (PCS0..PCS63)
 *
 *   This function disables the clocks to the selected peripheral memory
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_PowerDown_Set(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 {
@@ -184,7 +219,7 @@ void peripheral_Memory_PowerDown_Set(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 *   @param[in] PCS   Peripheral memory chip select (PCS0..PCS63)
 *
 *   This function enables the clocks to the selected peripheral memory
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_PowerDown_Clr(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 {
@@ -216,7 +251,7 @@ void peripheral_Memory_PowerDown_Clr(pcrBASE_t *pcr, peripheral_Memory_t PCS)
 *		                    - QUADRANT3
 *
 *   This function disables the clocks to the selected quadrant(s)
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_PowerDown_Set(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant)
 {
@@ -257,8 +292,8 @@ void peripheral_Frame_PowerDown_Set(pcrBASE_t *pcr, peripheral_Frame_t PS, uint3
 *		                    - QUADRANT2
 *		                    - QUADRANT3
 *
-*   This function disables the clocks to the selected quadrant(s)
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   This function enables the clocks to the selected quadrant(s)
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_PowerDown_Clr(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant)
 {
@@ -310,7 +345,7 @@ void peripheral_Frame_PowerDown_Clr(pcrBASE_t *pcr, peripheral_Frame_t PS, uint3
 *							- Master_EMAC
 *
 *   This function enables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant, master_ID_t master)
 {
@@ -375,7 +410,7 @@ void peripheral_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, peripheral_Frame_t P
 *							- Master_EMAC
 *
 *   This function disables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PSx corresponding to each peripheral frame
 */
 void peripheral_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr, peripheral_Frame_t PS, uint32 quadrant, master_ID_t master)
 {
@@ -440,7 +475,7 @@ void peripheral_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr, peripheral_Frame_t 
 *							- Master_EMAC
 *
 *   This function enables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PPSx corresponding to each peripheral frame
 */
 void privileged_Peripheral_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, privileged_Peripheral_Frame_t PPS, uint32 quadrant, master_ID_t master)
 {
@@ -505,7 +540,7 @@ void privileged_Peripheral_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, privilege
 *							- Master_EMAC
 *
 *   This function disables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPSx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PPSx corresponding to each peripheral frame
 */
 void privileged_Peripheral_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr, privileged_Peripheral_Frame_t PPS, uint32 quadrant, master_ID_t master)
 {
@@ -570,7 +605,7 @@ void privileged_Peripheral_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr, privileg
 *							- Master_EMAC
 *
 *   This function enables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPSEx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PPSEx corresponding to each peripheral frame
 */
 void privileged_Peripheral_Extended_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, privileged_Peripheral_Extended_Frame_t PPSE, uint32 quadrant, master_ID_t master)
 {
@@ -635,7 +670,7 @@ void privileged_Peripheral_Extended_Frame_MasterIDFilter_Enable(pcrBASE_t *pcr, 
 *							- Master_EMAC
 *
 *   This function disables the permission of the corresponding master to access the peripheral quadrant(s). This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPSEx corresponding to each peripheral frame
+*   @note Please refer the datasheet for PCRx and PPSEx corresponding to each peripheral frame
 */
 void privileged_Peripheral_Extended_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr, privileged_Peripheral_Extended_Frame_t PPSE, uint32 quadrant, master_ID_t master)
 {
@@ -695,7 +730,7 @@ void privileged_Peripheral_Extended_Frame_MasterIDFilter_Disable(pcrBASE_t *pcr,
 *							- Master_EMAC
 *
 *   This function enables the permission of the corresponding master to access the peripheral memory. This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_MasterIDFilter_Enable(pcrBASE_t *pcr, peripheral_Memory_t PCS, master_ID_t master)
 {
@@ -737,7 +772,7 @@ void peripheral_Memory_MasterIDFilter_Enable(pcrBASE_t *pcr, peripheral_Memory_t
 *							- Master_EMAC
 *
 *   This function disables the permission of the corresponding master to access the peripheral memory. This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PCSx corresponding to each peripheral memory
 */
 void peripheral_Memory_MasterIDFilter_Disable(pcrBASE_t *pcr, peripheral_Memory_t PCS, master_ID_t master)
 {
@@ -779,7 +814,7 @@ void peripheral_Memory_MasterIDFilter_Disable(pcrBASE_t *pcr, peripheral_Memory_
 *							- Master_EMAC
 *
 *   This function enables the permission of the corresponding master to access the peripheral memory. This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PPCSx corresponding to each peripheral memory
 */
 void privileged_Peripheral_Memory_MasterIDFilter_Enable(pcrBASE_t *pcr, privileged_Peripheral_Memory_t PPCS, master_ID_t master)
 {
@@ -821,7 +856,7 @@ void privileged_Peripheral_Memory_MasterIDFilter_Enable(pcrBASE_t *pcr, privileg
 *							- Master_EMAC
 *
 *   This function disables the permission of the corresponding master to access the peripheral memory. This function will not enable master-id check for the selected PCR. Application must call the routine  pcrEnableMasterIDCheck to do the same.
-*   @Note Please refer the datasheet for PCRx and PPCSx corresponding to each peripheral memory
+*   @note Please refer the datasheet for PCRx and PPCSx corresponding to each peripheral memory
 */
 void privileged_Peripheral_Memory_MasterIDFilter_Disable(pcrBASE_t *pcr, privileged_Peripheral_Memory_t PPCS, master_ID_t master)
 {
