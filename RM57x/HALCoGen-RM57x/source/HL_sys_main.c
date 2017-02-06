@@ -50,6 +50,7 @@
 #include "HL_sys_common.h"
 
 /* USER CODE BEGIN (1) */
+#include "HL_gio.h"
 extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 /* USER CODE END */
 
@@ -70,6 +71,7 @@ uint32 	emacPhyAddress	=	1U;
 int main(void)
 {
 /* USER CODE BEGIN (3) */
+    gioInit();
 	EMAC_LwIP_Main(emacAddress);
 /* USER CODE END */
 

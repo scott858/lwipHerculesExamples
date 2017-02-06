@@ -2,9 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-SHELL = cmd.exe
-
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS
+CG_TOOL_ROOT := /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -38,14 +36,14 @@ ORDERED_OBJS += \
 "./lwip-1.4.1/src/core/def.obj" \
 "./lwip-1.4.1/src/core/timers.obj" \
 "./lwip-1.4.1/src/netif/ethernetif.obj" \
-"C:/Users/sleewin/repos/code/lwipHerculesExamples/RM48x/HALCoGen-RM48/source/sys_link.cmd" \
+"/home/slee/repos/code/lwipHerculesExamples/RM48x/HALCoGen-RM48/source/sys_link.cmd" \
 $(GEN_CMDS__FLAG) \
 -lrtsv7R4_T_le_v3D16_eabi.lib \
 
 -include ../makefile.init
 
-RM := DEL /F
-RMDIR := RMDIR /S/Q
+RM := rm -rf
+RMDIR := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -170,16 +168,16 @@ all: Build-RM48.out
 Build-RM48.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -me -g --diag_warning=225 --display_error_number --diag_wrap=off --enum_type=packed -z -m"Build-RM48.map" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Build-RM48_linkInfo.xml" --rom_model -o "Build-RM48.out" $(ORDERED_OBJS)
+	"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -me -g --diag_warning=225 --display_error_number --diag_wrap=off --enum_type=packed -z -m"Build-RM48.map" -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Build-RM48_linkInfo.xml" --rom_model -o "Build-RM48.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "HALCoGen-RM48\source\dabort.obj" "HALCoGen-RM48\source\emac.obj" "HALCoGen-RM48\source\esm.obj" "HALCoGen-RM48\source\mdio.obj" "HALCoGen-RM48\source\notification.obj" "HALCoGen-RM48\source\phy_dp83640.obj" "HALCoGen-RM48\source\pinmux.obj" "HALCoGen-RM48\source\sci.obj" "HALCoGen-RM48\source\sys_core.obj" "HALCoGen-RM48\source\sys_dma.obj" "HALCoGen-RM48\source\sys_intvecs.obj" "HALCoGen-RM48\source\sys_main.obj" "HALCoGen-RM48\source\sys_mpu.obj" "HALCoGen-RM48\source\sys_pcr.obj" "HALCoGen-RM48\source\sys_phantom.obj" "HALCoGen-RM48\source\sys_pmm.obj" "HALCoGen-RM48\source\sys_pmu.obj" "HALCoGen-RM48\source\sys_selftest.obj" "HALCoGen-RM48\source\sys_startup.obj" "HALCoGen-RM48\source\sys_vim.obj" "HALCoGen-RM48\source\system.obj" "example\hdk\src\lwip_main.obj" "lwip-1.4.1\apps\httpserver_raw\fs.obj" "lwip-1.4.1\apps\httpserver_raw\httpd.obj" "lwip-1.4.1\ports\hdk\lwiplib.obj" "lwip-1.4.1\src\core\def.obj" "lwip-1.4.1\src\core\timers.obj" "lwip-1.4.1\src\netif\ethernetif.obj" 
-	-$(RM) "HALCoGen-RM48\source\emac.d" "HALCoGen-RM48\source\esm.d" "HALCoGen-RM48\source\mdio.d" "HALCoGen-RM48\source\notification.d" "HALCoGen-RM48\source\phy_dp83640.d" "HALCoGen-RM48\source\pinmux.d" "HALCoGen-RM48\source\sci.d" "HALCoGen-RM48\source\sys_dma.d" "HALCoGen-RM48\source\sys_main.d" "HALCoGen-RM48\source\sys_pcr.d" "HALCoGen-RM48\source\sys_phantom.d" "HALCoGen-RM48\source\sys_pmm.d" "HALCoGen-RM48\source\sys_selftest.d" "HALCoGen-RM48\source\sys_startup.d" "HALCoGen-RM48\source\sys_vim.d" "HALCoGen-RM48\source\system.d" "example\hdk\src\lwip_main.d" "lwip-1.4.1\apps\httpserver_raw\fs.d" "lwip-1.4.1\apps\httpserver_raw\httpd.d" "lwip-1.4.1\ports\hdk\lwiplib.d" "lwip-1.4.1\src\core\def.d" "lwip-1.4.1\src\core\timers.d" "lwip-1.4.1\src\netif\ethernetif.d" 
-	-$(RM) "HALCoGen-RM48\source\dabort.d" "HALCoGen-RM48\source\sys_core.d" "HALCoGen-RM48\source\sys_intvecs.d" "HALCoGen-RM48\source\sys_mpu.d" "HALCoGen-RM48\source\sys_pmu.d" 
+	-$(RM) "HALCoGen-RM48/source/dabort.obj" "HALCoGen-RM48/source/emac.obj" "HALCoGen-RM48/source/esm.obj" "HALCoGen-RM48/source/mdio.obj" "HALCoGen-RM48/source/notification.obj" "HALCoGen-RM48/source/phy_dp83640.obj" "HALCoGen-RM48/source/pinmux.obj" "HALCoGen-RM48/source/sci.obj" "HALCoGen-RM48/source/sys_core.obj" "HALCoGen-RM48/source/sys_dma.obj" "HALCoGen-RM48/source/sys_intvecs.obj" "HALCoGen-RM48/source/sys_main.obj" "HALCoGen-RM48/source/sys_mpu.obj" "HALCoGen-RM48/source/sys_pcr.obj" "HALCoGen-RM48/source/sys_phantom.obj" "HALCoGen-RM48/source/sys_pmm.obj" "HALCoGen-RM48/source/sys_pmu.obj" "HALCoGen-RM48/source/sys_selftest.obj" "HALCoGen-RM48/source/sys_startup.obj" "HALCoGen-RM48/source/sys_vim.obj" "HALCoGen-RM48/source/system.obj" "example/hdk/src/lwip_main.obj" "lwip-1.4.1/apps/httpserver_raw/fs.obj" "lwip-1.4.1/apps/httpserver_raw/httpd.obj" "lwip-1.4.1/ports/hdk/lwiplib.obj" "lwip-1.4.1/src/core/def.obj" "lwip-1.4.1/src/core/timers.obj" "lwip-1.4.1/src/netif/ethernetif.obj" 
+	-$(RM) "HALCoGen-RM48/source/emac.d" "HALCoGen-RM48/source/esm.d" "HALCoGen-RM48/source/mdio.d" "HALCoGen-RM48/source/notification.d" "HALCoGen-RM48/source/phy_dp83640.d" "HALCoGen-RM48/source/pinmux.d" "HALCoGen-RM48/source/sci.d" "HALCoGen-RM48/source/sys_dma.d" "HALCoGen-RM48/source/sys_main.d" "HALCoGen-RM48/source/sys_pcr.d" "HALCoGen-RM48/source/sys_phantom.d" "HALCoGen-RM48/source/sys_pmm.d" "HALCoGen-RM48/source/sys_selftest.d" "HALCoGen-RM48/source/sys_startup.d" "HALCoGen-RM48/source/sys_vim.d" "HALCoGen-RM48/source/system.d" "example/hdk/src/lwip_main.d" "lwip-1.4.1/apps/httpserver_raw/fs.d" "lwip-1.4.1/apps/httpserver_raw/httpd.d" "lwip-1.4.1/ports/hdk/lwiplib.d" "lwip-1.4.1/src/core/def.d" "lwip-1.4.1/src/core/timers.d" "lwip-1.4.1/src/netif/ethernetif.d" 
+	-$(RM) "HALCoGen-RM48/source/dabort.d" "HALCoGen-RM48/source/sys_core.d" "HALCoGen-RM48/source/sys_intvecs.d" "HALCoGen-RM48/source/sys_mpu.d" "HALCoGen-RM48/source/sys_pmu.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

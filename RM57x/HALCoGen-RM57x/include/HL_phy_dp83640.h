@@ -124,6 +124,8 @@ extern void Dp83640DisableLoopback(uint32 mdioBaseAddr, uint32 phyAddr);
 extern boolean Dp83640PartnerSpdGet(uint32 mdioBaseAddr, uint32 phyAddr, uint16 *ptnerAblty);
 
 /* USER CODE BEGIN (2) */
+#undef DP83640_PHY_ID
+#define DP83640_PHY_ID (0x2005CE1u)
 /* USER CODE END */
 
 #ifdef __cplusplus

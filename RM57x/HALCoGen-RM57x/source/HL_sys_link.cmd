@@ -55,18 +55,36 @@
 MEMORY
 {
 /* USER CODE BEGIN (2) */
+#if 0
 /* USER CODE END */
-    VECTORS (X)  : origin=0x00000000 length=0x00000020
-    FLASH0  (RX) : origin=0x00000020 length=0x001FFFE0
-    FLASH1  (RX) : origin=0x00200000 length=0x00200000
+    VECTORS (X)  : origin=0x00000000 length=0x00000020 vfill=0xFFFFFFFF
+    FLASH0  (RX) : origin=0x00000020 length=0x001FFFE0 vfill=0xFFFFFFFF
+    FLASH1  (RX) : origin=0x00200000 length=0x00200000 vfill=0xFFFFFFFF
     STACKS  (RW) : origin=0x08000000 length=0x00001500
     RAM     (RW) : origin=0x08001500 length=0x0007EB00
 
 /* USER CODE BEGIN (3) */
+#endif
+    VECTORS (X)  : origin=0x00000000 length=0x00000020 vfill=0xFFFFFFFF
+    FLASH0  (RX) : origin=0x00000020 length=0x001FFFE0 vfill=0xFFFFFFFF
+    FLASH1  (RX) : origin=0x00200000 length=0x00200000 vfill=0xFFFFFFFF
+    STACKS  (RW) : origin=0x08000000 length=0x00001500
+    RAM     (RW) : origin=0x08001500 length=0x0007EB00
+
+	ECC_VEC (R)  : origin=0xf0400000 length=0x4 ECC={ input_range=VECTORS }
+    ECC_FLA0 (R) : origin=0xf0400000 + 0x4 length=0x3FFFC ECC={ input_range=FLASH0 }
+    ECC_FLA1 (R) : origin=0xf0440000 length=0x40000 ECC={ input_range=FLASH1 }
 /* USER CODE END */
 }
 
 /* USER CODE BEGIN (4) */
+ECC
+{
+   algo_name : address_mask = 0xfffffff8
+   hamming_mask = R4
+   parity_mask = 0x0c
+   mirroring = F021
+}
 /* USER CODE END */
 
 

@@ -2,9 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-SHELL = cmd.exe
-
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS
+CG_TOOL_ROOT := /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -40,14 +38,14 @@ ORDERED_OBJS += \
 "./lwip-1.4.1/src/core/def.obj" \
 "./lwip-1.4.1/src/core/timers.obj" \
 "./lwip-1.4.1/src/netif/ethernetif.obj" \
-"C:/Users/sleewin/repos/code/lwipHerculesExamples/TMS570LC43x/HALCoGen-TMS570LC43x/source/HL_sys_link.cmd" \
+"/home/slee/repos/code/lwipHerculesExamples/TMS570LC43x/HALCoGen-TMS570LC43x/source/HL_sys_link.cmd" \
 $(GEN_CMDS__FLAG) \
 -lrtsv7R4_T_be_v3D16_eabi.lib \
 
 -include ../makefile.init
 
-RM := DEL /F
-RMDIR := RMDIR /S/Q
+RM := rm -rf
+RMDIR := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -172,18 +170,18 @@ all: Build-TMS570LC43x.out
 Build-TMS570LC43x.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --define=_TMS570LC43x_ --display_error_number --diag_warning=225 --diag_wrap=off --enum_type=packed -z -m"Build-TMS570LC43x.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Build-TMS570LC43x_linkInfo.xml" --rom_model --be32 -o "Build-TMS570LC43x.out" $(ORDERED_OBJS)
+	"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --abi=eabi -g --define=_TMS570LC43x_ --display_error_number --diag_warning=225 --diag_wrap=off --enum_type=packed -z -m"Build-TMS570LC43x.map" --heap_size=0x800 --stack_size=0x800 -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"/opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Build-TMS570LC43x_linkInfo.xml" --rom_model --be32 -o "Build-TMS570LC43x.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "HALCoGen-TMS570LC43x\source\HL_emac.obj" "HALCoGen-TMS570LC43x\source\HL_epc.obj" "HALCoGen-TMS570LC43x\source\HL_errata.obj" "HALCoGen-TMS570LC43x\source\HL_esm.obj" "HALCoGen-TMS570LC43x\source\HL_mdio.obj" "HALCoGen-TMS570LC43x\source\HL_nmpu.obj" "HALCoGen-TMS570LC43x\source\HL_notification.obj" "HALCoGen-TMS570LC43x\source\HL_phy_dp83640.obj" "HALCoGen-TMS570LC43x\source\HL_pinmux.obj" "HALCoGen-TMS570LC43x\source\HL_sci.obj" "HALCoGen-TMS570LC43x\source\HL_sys_core.obj" "HALCoGen-TMS570LC43x\source\HL_sys_dma.obj" "HALCoGen-TMS570LC43x\source\HL_sys_intvecs.obj" "HALCoGen-TMS570LC43x\source\HL_sys_main.obj" "HALCoGen-TMS570LC43x\source\HL_sys_mpu.obj" "HALCoGen-TMS570LC43x\source\HL_sys_pcr.obj" "HALCoGen-TMS570LC43x\source\HL_sys_phantom.obj" "HALCoGen-TMS570LC43x\source\HL_sys_pmm.obj" "HALCoGen-TMS570LC43x\source\HL_sys_pmu.obj" "HALCoGen-TMS570LC43x\source\HL_sys_selftest.obj" "HALCoGen-TMS570LC43x\source\HL_sys_startup.obj" "HALCoGen-TMS570LC43x\source\HL_sys_vim.obj" "HALCoGen-TMS570LC43x\source\HL_system.obj" 
-	-$(RM) "example\hdk\src\lwip_main.obj" "lwip-1.4.1\apps\httpserver_raw\fs.obj" "lwip-1.4.1\apps\httpserver_raw\httpd.obj" "lwip-1.4.1\ports\hdk\lwiplib.obj" "lwip-1.4.1\src\core\def.obj" "lwip-1.4.1\src\core\timers.obj" "lwip-1.4.1\src\netif\ethernetif.obj" 
-	-$(RM) "HALCoGen-TMS570LC43x\source\HL_emac.d" "HALCoGen-TMS570LC43x\source\HL_epc.d" "HALCoGen-TMS570LC43x\source\HL_errata.d" "HALCoGen-TMS570LC43x\source\HL_esm.d" "HALCoGen-TMS570LC43x\source\HL_mdio.d" "HALCoGen-TMS570LC43x\source\HL_nmpu.d" "HALCoGen-TMS570LC43x\source\HL_notification.d" "HALCoGen-TMS570LC43x\source\HL_phy_dp83640.d" "HALCoGen-TMS570LC43x\source\HL_pinmux.d" "HALCoGen-TMS570LC43x\source\HL_sci.d" "HALCoGen-TMS570LC43x\source\HL_sys_dma.d" "HALCoGen-TMS570LC43x\source\HL_sys_main.d" "HALCoGen-TMS570LC43x\source\HL_sys_pcr.d" "HALCoGen-TMS570LC43x\source\HL_sys_phantom.d" "HALCoGen-TMS570LC43x\source\HL_sys_pmm.d" "HALCoGen-TMS570LC43x\source\HL_sys_selftest.d" "HALCoGen-TMS570LC43x\source\HL_sys_startup.d" "HALCoGen-TMS570LC43x\source\HL_sys_vim.d" "HALCoGen-TMS570LC43x\source\HL_system.d" "example\hdk\src\lwip_main.d" "lwip-1.4.1\apps\httpserver_raw\fs.d" "lwip-1.4.1\apps\httpserver_raw\httpd.d" "lwip-1.4.1\ports\hdk\lwiplib.d" "lwip-1.4.1\src\core\def.d" "lwip-1.4.1\src\core\timers.d" 
-	-$(RM) "lwip-1.4.1\src\netif\ethernetif.d" 
-	-$(RM) "HALCoGen-TMS570LC43x\source\HL_sys_core.d" "HALCoGen-TMS570LC43x\source\HL_sys_intvecs.d" "HALCoGen-TMS570LC43x\source\HL_sys_mpu.d" "HALCoGen-TMS570LC43x\source\HL_sys_pmu.d" 
+	-$(RM) "HALCoGen-TMS570LC43x/source/HL_emac.obj" "HALCoGen-TMS570LC43x/source/HL_epc.obj" "HALCoGen-TMS570LC43x/source/HL_errata.obj" "HALCoGen-TMS570LC43x/source/HL_esm.obj" "HALCoGen-TMS570LC43x/source/HL_mdio.obj" "HALCoGen-TMS570LC43x/source/HL_nmpu.obj" "HALCoGen-TMS570LC43x/source/HL_notification.obj" "HALCoGen-TMS570LC43x/source/HL_phy_dp83640.obj" "HALCoGen-TMS570LC43x/source/HL_pinmux.obj" "HALCoGen-TMS570LC43x/source/HL_sci.obj" "HALCoGen-TMS570LC43x/source/HL_sys_core.obj" "HALCoGen-TMS570LC43x/source/HL_sys_dma.obj" "HALCoGen-TMS570LC43x/source/HL_sys_intvecs.obj" "HALCoGen-TMS570LC43x/source/HL_sys_main.obj" "HALCoGen-TMS570LC43x/source/HL_sys_mpu.obj" "HALCoGen-TMS570LC43x/source/HL_sys_pcr.obj" "HALCoGen-TMS570LC43x/source/HL_sys_phantom.obj" "HALCoGen-TMS570LC43x/source/HL_sys_pmm.obj" "HALCoGen-TMS570LC43x/source/HL_sys_pmu.obj" "HALCoGen-TMS570LC43x/source/HL_sys_selftest.obj" "HALCoGen-TMS570LC43x/source/HL_sys_startup.obj" "HALCoGen-TMS570LC43x/source/HL_sys_vim.obj" "HALCoGen-TMS570LC43x/source/HL_system.obj" 
+	-$(RM) "example/hdk/src/lwip_main.obj" "lwip-1.4.1/apps/httpserver_raw/fs.obj" "lwip-1.4.1/apps/httpserver_raw/httpd.obj" "lwip-1.4.1/ports/hdk/lwiplib.obj" "lwip-1.4.1/src/core/def.obj" "lwip-1.4.1/src/core/timers.obj" "lwip-1.4.1/src/netif/ethernetif.obj" 
+	-$(RM) "HALCoGen-TMS570LC43x/source/HL_emac.d" "HALCoGen-TMS570LC43x/source/HL_epc.d" "HALCoGen-TMS570LC43x/source/HL_errata.d" "HALCoGen-TMS570LC43x/source/HL_esm.d" "HALCoGen-TMS570LC43x/source/HL_mdio.d" "HALCoGen-TMS570LC43x/source/HL_nmpu.d" "HALCoGen-TMS570LC43x/source/HL_notification.d" "HALCoGen-TMS570LC43x/source/HL_phy_dp83640.d" "HALCoGen-TMS570LC43x/source/HL_pinmux.d" "HALCoGen-TMS570LC43x/source/HL_sci.d" "HALCoGen-TMS570LC43x/source/HL_sys_dma.d" "HALCoGen-TMS570LC43x/source/HL_sys_main.d" "HALCoGen-TMS570LC43x/source/HL_sys_pcr.d" "HALCoGen-TMS570LC43x/source/HL_sys_phantom.d" "HALCoGen-TMS570LC43x/source/HL_sys_pmm.d" "HALCoGen-TMS570LC43x/source/HL_sys_selftest.d" "HALCoGen-TMS570LC43x/source/HL_sys_startup.d" "HALCoGen-TMS570LC43x/source/HL_sys_vim.d" "HALCoGen-TMS570LC43x/source/HL_system.d" "example/hdk/src/lwip_main.d" "lwip-1.4.1/apps/httpserver_raw/fs.d" "lwip-1.4.1/apps/httpserver_raw/httpd.d" "lwip-1.4.1/ports/hdk/lwiplib.d" "lwip-1.4.1/src/core/def.d" "lwip-1.4.1/src/core/timers.d" 
+	-$(RM) "lwip-1.4.1/src/netif/ethernetif.d" 
+	-$(RM) "HALCoGen-TMS570LC43x/source/HL_sys_core.d" "HALCoGen-TMS570LC43x/source/HL_sys_intvecs.d" "HALCoGen-TMS570LC43x/source/HL_sys_mpu.d" "HALCoGen-TMS570LC43x/source/HL_sys_pmu.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
